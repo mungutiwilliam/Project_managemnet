@@ -15,8 +15,8 @@ bezkoder.com/node-js-mongodb-auth-jwt/
 
 Database/ functionalities
 users(asign roles(admin, agent, tenant))
-Admin (username, password) {add apartment, delete apartment, edit apartments details, assign agent, view payment records}
-Agent(agent_id, username, password, email, name, number, assigned_to) will assign unit id's usings specific unique code to represent 1b, 2b,3b {view records, register tenant, view flagged issues}
+Admin (email, password) {add apartment, delete apartment, edit apartments details, assign agent, view payment records}
+Agent(agent_id, password, email, fname, lname, phone_number, assigned_to) will assign unit id's usings specific unique code to represent 1b, 2b,3b {view records, register tenant, view flagged issues}
 Tenant (Tenant_id, fname, lname, email, apartment_name, unit_type, balance, unit_id)  {view payment records, flag issues}
 Apartment (apartment_id, name, location, num_units, unit_type) must generate unique Id for each unit 
 Units  (unit_id, unit_type(enum values = 1b,2b,3b,bds), price, tenant_id ) 
