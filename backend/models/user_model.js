@@ -24,12 +24,20 @@ const User_schema =  new mongoose.Schema({
     Password: {type : String,
          required: false},
     
-    user_type : {
+    User_type : {
         type : String,
         enum : ['Admin', 'Agent', 'Tenant'],
         required: true,
     },
-    user_id : user_id
+    User_id : user_id,
+
+    Balance : {
+        type : Integer,
+        required: false
+    },
+    assigned_to : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'User'}
 
 })
 

@@ -11,17 +11,18 @@ const apartment_schema =  new mongoose.Schema({
         required: true},
 
     num_units: {
-        type : String, //number
+        type : Number,
         required: true},
 
-    unit_types: {  // enum type : String,
+    unit_type: {  
         type : String,
-        enum : ['1B','2B','3B'],
+        enum : ['1B','2B','3B','4B'],
         required: true, 
         unique: true},
-         
-    Password: {type : String,
-         required: false},
+    agent_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'User'
+    }
 
 })
 
