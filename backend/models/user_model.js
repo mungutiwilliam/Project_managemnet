@@ -1,5 +1,6 @@
 // user model
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const user_id  = mongoose.Schema.ObjectId;
 
 const User_schema =  new mongoose.Schema({
     First_name: {
@@ -27,7 +28,8 @@ const User_schema =  new mongoose.Schema({
         type : String,
         enum : ['Admin', 'Agent', 'Tenant'],
         required: true,
-    }
+    },
+    user_id : user_id
 
 })
 
