@@ -4,12 +4,13 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Navbar from './Pages/Navbar/Navbar';
+import Navmenu from './Pages/Navbar/Navmenu';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
+      <Navmenu/>
   
       <Routes>
 
