@@ -1,12 +1,17 @@
 import React from 'react'
-import { Container, Card, Row, Text } from "@nextui-org/react";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import 'bootstrap/dist/css/bootstrap.css'
 
 import HeroSection from './HeroSection';
 function Home() {
   return (
-    <div>
-        <Container fluid>
-    <HeroSection/>
+    <div className="container">
+        <Container>
+            <Row><Col sm={8}>
+            <HeroSection/>
+                </Col></Row>
     </Container>
 
     </div>
