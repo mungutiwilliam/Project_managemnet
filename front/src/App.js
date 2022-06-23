@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Navmenu from './Pages/Navbar/Navmenu';
+import Home from './Pages/Home/Home';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Navmenu/>
   
       <Routes>
+      <Route exact path="/" element={ <Home/> } />
 
       </Routes>
     </BrowserRouter>
