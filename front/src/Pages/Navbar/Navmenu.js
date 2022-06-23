@@ -1,6 +1,5 @@
 import React from 'react'
 import {Container,Navbar, Nav} from 'react-bootstrap'
-import { Avatar,Grid,Container } from '@nextui-org/react'
 import 'bootstrap/dist/css/bootstrap.css'
 function Navmenu() {
   return (
