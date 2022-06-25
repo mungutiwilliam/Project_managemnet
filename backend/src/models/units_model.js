@@ -5,7 +5,7 @@ const unit_schema = new mongoose.Schema({
     unit_id: unit_id,
     unit_type: {
         type: 'string',
-        enum:['1B', '2B', '3B', 'BD'],
+        enum:['1B', '2B', '3B', '4B'],
         required: true,
     },
     price: {
@@ -17,8 +17,6 @@ const unit_schema = new mongoose.Schema({
         ref : 'User',
         required: true,
     }
-
-
 })
 
 const Unit = mongoose.model('Unit', unit_schema)

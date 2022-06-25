@@ -21,7 +21,7 @@ const apartment_schema =  new mongoose.Schema({
         unique: true},
     agent_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'Agent'
     }
 
 })
