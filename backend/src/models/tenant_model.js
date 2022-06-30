@@ -24,9 +24,8 @@ const tenant_schema =  new mongoose.Schema({
     Password: {type : String,
          required: false},
     
-    User_type : {
+    role : {
         type : String,
-        enum : ['admin', 'agent', 'tenant'],
         required: true,
     },
     Tenant_id : tenant_id,

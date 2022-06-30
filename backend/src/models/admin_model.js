@@ -11,12 +11,19 @@ const admin_schema  = new mongoose.Schema({
         required: true
     },
     Email : {
-
+        type: String,
+        required: true
     },
-    passwords:{
-
+    role : {
+        type : String,
+        required: true,
+    },
+    password:{
+        type: String,
+        required: true
     },
 })
 
-const Admin = mongoos.model('Admin', admin_schema);
-module,exports = Admin;
+const Admin = mongoose.model('Admin', admin_schema);
+
+module.exports = Admin;

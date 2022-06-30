@@ -10,13 +10,22 @@ const agent_schema = new mongoose.Schema({
         required: true
     },
     Email : {
-
+        type: String,
+        required: true,
+        unique: true
     },
     passwords:{
+        type: String,
+        required: true,
 
     },
+    role : {
+        type : String,
+        required: true,
+    },
     phone_number:{
-
+        type: String,
+        required: true
     },
     assigned_to : {
         type: mongoose.Schema.Types.ObjectId,
