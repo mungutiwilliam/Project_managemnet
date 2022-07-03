@@ -1,8 +1,7 @@
  const mongoose = require('mongoose');
+ const {DB}= require('../config/index')
 
- var mongodb = ''
-
- mongoose.connect('',
+ mongoose.connect(DB,
  {
     useNewUrlParser: true,
     useUnifiedTopology: true

@@ -1,35 +1,35 @@
 const mongoose = require('mongoose');
 
 const agent_schema = new mongoose.Schema({
-    First_Name:{
+    first_name:{
         type: String,
-        required: true
     },
-    Last_name:{
+    last_name:{
         type: String,
-        required: true
     },
-    Email : {
+    email : {
         type: String,
-        required: true,
         unique: true
     },
-    passwords:{
+    password:{
         type: String,
-        required: true,
-
     },
     role : {
         type : String,
-        required: true,
+        default:'agent',
     },
     phone_number:{
         type: String,
-        required: true
+        unique: true
     },
     assigned_to : {
         type: mongoose.Schema.Types.ObjectId,
-        ref : 'Apartment'}
+        ref : 'Apartment'
+    },
+    tenant_registered:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tenant'
+    }    
 })
 
 const Agent = mongoose.model('Agent', agent_schema);

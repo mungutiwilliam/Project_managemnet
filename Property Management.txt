@@ -1,3 +1,7 @@
+dbdetails : username 'property' password 'ZiRL1lY0rNgcWia1'
+
+
+
 Common features 
 Payment tracking
 Invoice generation

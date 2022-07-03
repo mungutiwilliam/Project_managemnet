@@ -1,0 +1,16 @@
+###
+//register Apartment
+POST http://localhost:30001/tenants
+Content-Type: application/json
+
+{
+    "first_name": "Martin",
+    "last_name": "Mwai",
+    "email": "martinm@gmail.com",
+    "role": "tenant",
+    "unit_id": "1b1",
+    "phone_number": "0724333690",
+    "password": "fruits",
+    "balance": "Software Engineer",
+    "agent_id":"aggshgd63627"
+}

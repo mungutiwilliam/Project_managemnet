@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const unit_id = mongoose.Schema.Types.ObjectId
 
 
 const payment_schema = new mongoose.Schema({
@@ -7,14 +6,21 @@ const payment_schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tenant'
     },
-    unit_id:{unit_id},
-    payment_for: {
+    payment_for:{
         type: String,
+        enum: ['rent','repairs', 'other'],
+        defaul:'rent',
         required: true
     },
-    apartment_id:{type: mongoose.Schema.Types.ObjectId,
+    decription:{
+        type: String,
+    },
+    apartment_id:{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Apartment'
-    }
+    },
+    payment_amount :{ 
+        type: Number}
 },{timestamps: true})
 
 const Payment = mongoose.model('Payment', payment_schema);

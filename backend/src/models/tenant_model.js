@@ -1,38 +1,37 @@
 // user model
 const mongoose = require('mongoose');
-const tenant_id  = mongoose.Schema.ObjectId;
 
 const tenant_schema =  new mongoose.Schema({
-    First_name: {
+    first_name: {
         type: String,
-         required: true},
+    },
 
-    Last_name: {
+    last_name: {
         type : String, 
-        required: true},
-
-    Email: {
+    },
+    email: {
         type : String, 
-        unique : true,
-        required: true},
-
-    Phone_number: {
-        type : String,
-         required: true, 
+    },
+    phone_number: {
+        type : String, 
          unique: true},
-         
-    Password: {type : String,
-         required: false},
-    
+    password: {type : String,
+         },
     role : {
         type : String,
-        required: true,
+        default:'tenant',
     },
-    Tenant_id : tenant_id,
-
-    Balance : {
-        type : Integer,
+    unit_id : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Unit'
+    },
+    balance : {
+        type : Number,
         required: false
+    },
+    agent_id: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'Agent'
     }
 
 })
