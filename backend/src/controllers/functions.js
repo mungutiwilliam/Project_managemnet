@@ -5,3 +5,14 @@ const Apartment = require('../models/apartment_model');
 const Agent = require('../models/agent_model');
 const Admin = require('../models/admin_model');
 
+const checkRole = role =>{
+
+} 
+
+const validateEmail = email =>{
+
+}
+
+const validateToken = async function(){
+
+}

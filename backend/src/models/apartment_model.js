@@ -22,6 +22,13 @@ const apartment_schema =  new mongoose.Schema({
     agent_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref : 'Agent'
+    },
+    units_occupied:{
+        type : Number
+        
+    },
+    units_available_for_rent:{
+        type : Number
     }
     // agent_name: {
     //     type: mongoose.Schema.Types.first_name,

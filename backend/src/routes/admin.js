@@ -14,13 +14,19 @@ const {viewAllTenants,
     deleteApartment, 
     deletePayment, 
     deleteAdmin,
+    deleteUnit,
     viewApartment,
     viewUnit,
     registerUnit,
     registerAgent,
     registerTenant,
     registerAdmin,
-    registerApartment} = require('../controllers/database_functions')
+    registerApartment,
+    updateTenant,
+    updatePayment,
+    updateAgent,
+    updateAdmin,
+    updateApartment} = require('../controllers/database_functions')
 
 
 router.get('/tenants', async function (req, res){
@@ -109,7 +115,32 @@ router.delete('/delete_payment/:id', async function(req, res){
     await deletePayment(req.params.id, res);
 })
 
+router.delete('/delete_unit/:id', async function(req, res){
+    await deleteUnit(req.params.id, res);
+})
 
+
+router.patch('/update_tenant/:id',async function(req, res){
+    await updateTenant(req, res);
+})
+
+router.patch('/update_agent/:id',async function(req, res){
+    await updateAgent(req, res);
+})
+
+
+router.patch('/update_apartment/:id',async function(req, res){
+    await updateApartment(req, res);
+})
+
+
+router.patch('/update_payment/:id', async function(req, res){
+    await updatePayment(req, res);
+})
+
+router.patch('/update_admin/:id', async function(req, res){
+    await updateAdmin(req, res);
+})
 
 
 module.exports = router
