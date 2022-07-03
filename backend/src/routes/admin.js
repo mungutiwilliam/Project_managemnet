@@ -1,5 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const {
+    deleteAgent,
+    deleteTenant, 
+    deleteApartment, 
+    deletePayment, 
+    deleteAdmin,
+    deleteUnit,
+} = require('../controllers/datbase_functions/delete/delete')
+const {
+    updateTenant,
+    updatePayment,
+    updateAgent,
+    updateAdmin,
+    updateApartment
+} = require('../controllers/datbase_functions/patch/patch')
 
 const {viewAllTenants,
     viewAllApartments,
@@ -9,24 +24,16 @@ const {viewAllTenants,
     viewAdmins,
     viewAgent,
     viewTenant,
-    deleteAgent,
-    deleteTenant, 
-    deleteApartment, 
-    deletePayment, 
-    deleteAdmin,
-    deleteUnit,
     viewApartment,
-    viewUnit,
+    viewUnit,} = require('../controllers/datbase_functions/get/get')
+
+const {
     registerUnit,
     registerAgent,
     registerTenant,
     registerAdmin,
     registerApartment,
-    updateTenant,
-    updatePayment,
-    updateAgent,
-    updateAdmin,
-    updateApartment} = require('../controllers/database_functions')
+    } = require('../controllers/datbase_functions/post/post')
 
 
 router.get('/tenants', async function (req, res){
