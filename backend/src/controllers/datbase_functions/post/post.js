@@ -85,11 +85,9 @@ const registerApartment = async function(apartment_details, res){
 
 
 module.exports = {
-
     registerAgent,
     registerTenant,
     registerAdmin,
     registerUnit,
-    registerApartment,
-   
+    registerApartment,  
 }

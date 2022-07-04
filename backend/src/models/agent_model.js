@@ -32,5 +32,21 @@ const agent_schema = new mongoose.Schema({
     }    
 })
 
+agent_schema.pre('save',async function(next){
+    try {
+        const agent = this
+        if(!agent.isModified(password)) next()
+        const salt = await bcrypt.genSalt(10)
+
+        const hashedpassword = await bcrypt.hash(this.password, salt)
+        this.password = hashedpassword
+        next()
+        
+    } catch (error) {
+        return next(error)
+        
+    }
+})
+
 const Agent = mongoose.model('Agent', agent_schema);
 module.exports = Agent;

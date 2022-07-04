@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/agent",agent);
 app.use("/admin", admin);
 app.use("/tenant",tenant);

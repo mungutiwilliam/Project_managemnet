@@ -1,5 +1,11 @@
 const express = require('express');
 const router = express.Router();
+var passport = require('passport');
+require('../middleware/passport')(passport);
+
+const {auth} = require('../controllers/functions')
+
+
 const {
     deleteAgent,
     deleteTenant, 
@@ -35,6 +41,7 @@ const {
     registerApartment,
     } = require('../controllers/datbase_functions/post/post')
 
+// const {auth } = require('../controllers/functions')
 
 router.get('/tenants', async function (req, res){
     await viewAllTenants(req.body, res);

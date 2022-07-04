@@ -50,7 +50,6 @@ const viewAllApartments = async function(req, res){
         return res.status(200).send({
             apartments
         })
-
     }catch(error){
         console.log(error)
         return res.status(500).send(error)
