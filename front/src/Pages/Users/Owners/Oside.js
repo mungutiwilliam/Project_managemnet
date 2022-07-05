@@ -20,11 +20,11 @@ Tenants
 
   </CNavItem>
 
-  <CNavItem href="#">
+  <CNavItem href="/Properties">
 
 
 
-    With badge
+Properties
 
     <CBadge color="primary ms-auto">NEW</CBadge>
 
