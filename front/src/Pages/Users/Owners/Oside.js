@@ -2,7 +2,7 @@ import React from 'react'
 import { CSidebar,CSidebarBrand,CSidebarNav,CNavItem,CNavTitle,CBadge,CNavGroup,CSidebarToggler } from '@coreui/react'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-function Aside() {
+function Oside() {
   return (
     <div>
       <CSidebar>
@@ -55,4 +55,4 @@ Tenants
   )
 }
 
-export default Aside
+export default Oside
