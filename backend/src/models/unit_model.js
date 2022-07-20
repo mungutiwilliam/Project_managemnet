@@ -1,22 +1,24 @@
 const mongoose = require('mongoose');
+const Tenant = require('./tenant_model');
+const Apartment = require('./apartment_model');
 
 const unit_schema = new mongoose.Schema({
     apartment_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Apartment'
+        ref: Apartment,
+        required: true
     },
     unit_type: {
         type: String,
         enum:['1B', '2B', '3B', '4B'],
         required: true,
     },
-    price: {
-        type : Number,
+    numb_of_bathrooms:{
+        type: Number,
         required: true,
     },
-    tenant_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref : 'User',
+    price: {
+        type : Number,
         required: true,
     }
 })

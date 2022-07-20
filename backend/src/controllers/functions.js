@@ -4,6 +4,7 @@ const Payment = require('../models/payment_model');
 const Apartment = require('../models/apartment_model');
 const Agent = require('../models/agent_model');
 const Admin = require('../models/admin_model');
+const {SECRET} = require('../config/index');
 
 
 // const auth = passport.authenticate("jwt", {session : false});
@@ -41,6 +42,24 @@ const validateEmail = async email =>{
     }
 }
 
+const generateToken = function(req, res, next){
+    var user = req.body
+    let token = jwt.sign({
+            user_id: user._id,
+            role: user.role,
+            user_email: user.email
+        }, SECRET, {expiresIn: "7 days"})
+
+        // let result = {
+        //     email: user.email,
+        //     role: user.role,
+        //     token: token,
+        //     tokenType: "Bearer",
+        //     expiresIn: 168
+        // }
+        // next()
+        return token
+}
 
 
 const validateTokken = async function (req,res,next){
@@ -63,5 +82,6 @@ module.exports = {
     validateTokken,
     validateEmail,
     checkRole,
+    generateToken
     // auth
 }

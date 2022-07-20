@@ -5,6 +5,11 @@ const Apartment = require('../../../models/apartment_model');
 const Agent = require('../../../models/agent_model');
 const Admin = require('../../../models/admin_model');
 
+const {validateTokken,
+    validateEmail,
+    checkRole,
+    generateToken} = require('../../functions')
+
 const registerAgent = async function(agent_details, res){
     try{
         const agent = new Agent(agent_details)
@@ -81,8 +86,6 @@ const registerApartment = async function(apartment_details, res){
         return res.status(500).send(error)
     }
 }
-
-
 
 module.exports = {
     registerAgent,

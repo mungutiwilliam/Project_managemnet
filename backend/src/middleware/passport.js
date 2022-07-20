@@ -2,6 +2,7 @@ const Tenant = require('../../src/models/tenant_model');
 const Admin = require('../../src/models/admin_model');
 const Agent = require('../../src/models/agent_model')
 const {SECRET} = require('../config/index');
+const passport = require('passport')
 const Strategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 
@@ -14,7 +15,7 @@ module.exports = function (passport){
     options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
     options.secretOrKey = SECRET
 
-    passport.use( "local-signup",new Strategy(options, function(jwt_payload, done){
+    passport.use( new Strategy(options, function(jwt_payload, done){
         Tenant.findOne({id: jwt_payload.id}, function(err, tenant){
             if(err){
                 return done(err, false)

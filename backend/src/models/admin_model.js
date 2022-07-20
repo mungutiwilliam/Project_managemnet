@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 
 const admin_schema  = new mongoose.Schema({
@@ -17,6 +18,7 @@ const admin_schema  = new mongoose.Schema({
     role : {
         type : String,
         default:'admin',
+        enum: ['admin', 'super-admin']
     },
     password:{
         type: String,
@@ -24,6 +26,33 @@ const admin_schema  = new mongoose.Schema({
     }
    
 })
+
+// admin_schema.pre('save', async function(password,next){
+//     try {
+//         const admin = this
+//         if (!admin.isModified(password)) next();
+//         // generate salt 
+
+//         const salt = await bcrypt.genSalt(10)
+//         // hash password
+//         const hashedpassword = await bcyrpt.hash(this.password, salt)
+//         // replace plain text password with hashed password
+//         this.password = hashedpassword
+//         next();
+        
+//     } catch (error) {
+//         return next(error);
+//     }
+// })
+
+// admin_schema.methods.comparepassword = function(passw, cb){
+//     bcyrpt.compare(passw, this.password, function (err, isMatch){
+//         if (err){
+//             return cb(err);
+//         }
+//         cb(null, isMatch);
+//     })
+// }
 
 const Admin = mongoose.model('Admin', admin_schema);
 
