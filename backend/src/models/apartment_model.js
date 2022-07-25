@@ -11,6 +11,10 @@ const apartment_schema =  new mongoose.Schema({
         type : String, 
         required: true
     },
+    estate:{
+        type: String,
+        required: true
+    },
     num_units: {
         type : Number,
         required: true
@@ -21,11 +25,7 @@ const apartment_schema =  new mongoose.Schema({
         required: true
     }],
     units_occupied:{
-        type : Number
-            
-    },
-    units_available_for_rent:{
-        type : Number
+        type : Number    
     }
 })
 
