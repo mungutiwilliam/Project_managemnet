@@ -9,6 +9,7 @@ import Home from './Pages/Home/Home';
 import Mgent from './Pages/Users/Agent/Mgent';
 import Owners from './Pages/Users/Owners/Owners';
 import AddProperty from './Pages/Users/Owners/Oproperty';
+import Atable from './Pages/Users/Agent/Atable';
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/agent" element={ <Mgent/> } />
       <Route exact path="/owner" element={ <Owners/> } />
       <Route exact path="/addprop" element={ <AddProperty/> } />
+      <Route exact path="/Table" element={ <Atable/>}/>
       </Routes>
     </BrowserRouter>
   

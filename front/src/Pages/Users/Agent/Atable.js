@@ -1,5 +1,6 @@
 import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+import Aside from './Aside';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -36,6 +37,8 @@ const rows = [
 
 export default function Atable() {
   return (
+    <>
+    <Aside/>
     <div style={{ height: 400, width: '100vh' ,marginLeft: '40vh',marginTop:'-40vh'}}>
       <DataGrid
         rows={rows}
@@ -45,5 +48,6 @@ export default function Atable() {
         checkboxSelection
       />
     </div>
+    </>
   );
 }

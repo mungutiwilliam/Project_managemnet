@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Spacer, Container,Card,Checkbox,Label} from "@nextui-org/react";
+import { Input, Spacer, Container,Card,Radio} from "@nextui-org/react";
 import Oside from './Oside';
 export default function Oproperty() {
   return (
@@ -12,15 +12,21 @@ export default function Oproperty() {
       <Spacer y={1.5} />
       <Input clearable bordered labelPlaceholder="Location" initialValue="NextUI" />
       <Spacer y={1.5} />
-      <Checkbox.Group
-      color="secondary"
-      defaultValue={["1"]}
-    >
-      <Checkbox value="1">Single Bedroom</Checkbox>
-      <Checkbox value="2">Two Bedrooms</Checkbox>
-      <Checkbox value="3">Three Bedrooms</Checkbox>
-      <Checkbox value="4">Four Bedrooms</Checkbox>
-    </Checkbox.Group>
+      <Radio.Group row value="primary"  >
+<Radio value="primary" color="primary" >
+ <label>Software Engineering </label> 
+</Radio>
+<Radio value="secondary" color="secondary" textColor="#ffffff">
+<label>Security </label> 
+</Radio>
+<Radio value="succcess" color="success" >
+ <label>Distributed Systems </label> 
+</Radio>
+<Radio value="gradient" color="primary" textColor="#ffffff">
+<label>Networking </label> 
+</Radio>
+</Radio.Group>
+
       <Spacer y={1.5} />
       <Input clearable bordered labelPlaceholder="Price" initialValue="NextUI" />
   

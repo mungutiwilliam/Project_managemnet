@@ -7,9 +7,6 @@ function Mgent() {
   return (
     <div>
       <Aside/>
-  
-
-    <Atable/>
     </div>
   )
 }

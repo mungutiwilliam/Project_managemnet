@@ -7,7 +7,7 @@ function Oside() {
     <div>
       <CSidebar>
 
-<CSidebarBrand>Sidebar Brand</CSidebarBrand>
+<CSidebarBrand>Sidebar</CSidebarBrand>
 
 <CSidebarNav>
 
@@ -26,25 +26,22 @@ Tenants
 
 Add Property
 
-    <CBadge color="primary ms-auto">NEW</CBadge>
+    <CBadge color="primary ms-auto">Properties</CBadge>
 
   </CNavItem>
 
-  <CNavGroup toggler="Nav dropdown">
 
     <CNavItem href="#">
 
- Nav dropdown item
+ Properties
 
     </CNavItem>
 
     <CNavItem href="#">
 
- Nav dropdown item
+ Payments
 
     </CNavItem>
-
-  </CNavGroup>
 
 </CSidebarNav>
 
