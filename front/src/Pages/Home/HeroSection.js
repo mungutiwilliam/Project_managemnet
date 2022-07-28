@@ -1,14 +1,51 @@
 import React from 'react'
 import './Hero.css'
 import Spline from '@splinetool/react-spline';
-import { Container, Card, Row, Text } from "@nextui-org/react";
+import { Container, Card, Row, Text, Image} from "@nextui-org/react";
 
 function HeroSection() {
   return (
-  
-<Card color="primary" style={{width:"90vh",height:"70vh",marginTop:"10vh",marginLeft:"2%"}}>
-    <Spline scene="https://prod.spline.design/JY8JJQK7OFEdi0Cq/scene.splinecode" />
-</Card>
+  <Container fluid style={{marginTop:"10vh"}}>
+      <Text
+        h1
+        size={60}
+        css={{
+          textGradient: "45deg, $blue600 -20%, $pink600 50%",
+        }}
+        weight="bold"
+      >
+        Let's
+      </Text>
+      <Text
+        h1
+        size={60}
+        css={{
+          textGradient: "45deg, $purple600 -20%, $pink600 100%",
+        }}
+        weight="bold"
+      >
+        Manage Your 
+      </Text>
+      <Text
+        h1
+        size={60}
+        css={{
+          textGradient: "45deg, $yellow600 -20%, $red600 100%",
+        }}
+        weight="bold"
+      >
+        Property
+      </Text>
+      <Card style={{marginLeft:"90vh",marginTop:"-40vh",width:"70%"}}>
+      <Image   
+      showSkeleton
+      width={400}
+      height={300}
+      src="https://imgur.com/gallery/FQW4gJP"
+      alt="Default Image"
+    />
+    </Card>
+      </Container>
   );
 }
 

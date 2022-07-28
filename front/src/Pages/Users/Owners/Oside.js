@@ -20,11 +20,11 @@ Tenants
 
   </CNavItem>
 
-  <CNavItem href="/Properties">
+  <CNavItem href="/addprop">
 
 
 
-Properties
+Add Property
 
     <CBadge color="primary ms-auto">NEW</CBadge>
 
