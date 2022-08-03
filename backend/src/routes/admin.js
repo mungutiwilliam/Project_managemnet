@@ -11,10 +11,13 @@ const {
     deleteApartment, 
     deletePayment, 
     deleteAdmin,
+    deleteTenant,
+    deleteUnit
 } = require('../controllers/datbase_functions/delete/delete')
 const {
     updateAdmin,
-    updateApartment
+    updateApartment,
+    updateTenant
 } = require('../controllers/datbase_functions/patch/patch')
 
 const {viewAllTenants,
@@ -23,14 +26,22 @@ const {viewAllTenants,
     viewAllAgents,
     viewAllUnits,
     viewAgent,
-    viewUnit,} = require('../controllers/datbase_functions/get/get')
+    viewAllAdmins,
+    viewUnit,
+    viewUnitOfTenant,
+    vviewApartmentAgent
+} = require('../controllers/datbase_functions/get/get')
 
 const {
     registerAgent,
     registerApartment,
-    } = require('../controllers/datbase_functions/post/post')
+    addPayment, 
+    registerTenant,
+    registerAdmin,
+    registerUnit 
+    
+ } = require('../controllers/datbase_functions/post/post')
 
-// const {auth } = require('../controllers/functions')
 
 router.get('/tenants', async function (req, res){
     await viewAllTenants(req.body, res);
@@ -70,12 +81,24 @@ router.post('/register_agent',async function (req, res){
     await registerAgent(req.body, res);
 })
 
-router.post('/register_super_admin',async function (req, res){
-    await registerSuperAdmin(req.body, res);
+router.post('/register_tenant',async function (req, res){
+    await registerTenant(req.body, res);
 })
+
+router.post('/register_admin',async function (req, res){
+    await registerAdmin(req.body, res);
+})
+router.post('/register_unit', async function (req, res){
+    await registerUnit(req.body, res);
+})
+
 
 router.post('/register_Apartment', async function (req, res){
     await registerApartment(req.body, res);
+})
+
+router.post('/add_payment', async function(req, res){
+    await addPayment(req.body, res)
 })
 
 router.delete('/delete_agent/:id', async function(req, res){
@@ -96,15 +119,51 @@ router.delete('/delete_payment/:id', async function(req, res){
     
 })
 
+router.delete('/delete_unit/:id', async function(req, res){
+    await deleteUnit(req.params.id, res);
+})
+
+router.delete('/delete_tenant/:id', async function(req, res){
+    await deleteTenant(req.params.id, res);
+})
+
+
 router.patch('/update_admin/:id', async function(req, res){
     await updateAdmin(req, res);
 
+})
+
+router.patch('/update_tenant/:id',async function(req, res){
+    await updateTenant(req, res);
 })
 
 router.patch('/update_apartment/:id',async function(req, res){
     await updateApartment(req, res);
 })
 
+
+// view apartments registered under agent
+router.get('/view_apartments_under_agent/:id', async function (req, res){
+    await viewApartmentAgent(req, res);
+})
+
+// view tenants registered under agent
+router.get('/view_tenants_under_agent/:id', async function (req, res){
+    await vviewApartmentAgent(req, res);
+})
+
+
+
+// view agents registered by admin
+router.get('/view_Agents_registered_agent/:id', async function (req, res){
+    await viewAgentsRegisteredAdmin()
+})
+
+
+// // view 
+// router.get('/view_', async function (req, res){
+//     await   
+// })
 
 
 

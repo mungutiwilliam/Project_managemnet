@@ -95,12 +95,13 @@ const deleteAdmin = async function(id,res){
         const admin = await Admin.findByIdAndDelete(id,res)
         if(!admin){
             return res.status(404).send({
-                message:'The admin does not exist'
+                message:`The admin does not exist`
             })  
 
-        }  return res.status(200).send({
+        }  
+        return res.status(200).send({
             admin,
-            message: 'Payment has been deleted'
+            message: `Admin of ID = ${admin._id} and of FirstName = ${admin.first_name} has been deleted`
         })
       
     } catch (error) {
@@ -120,7 +121,7 @@ const deleteUnit = async function(id,res){
 
         }  return res.status(200).send({
             unit,
-            message: 'Unit has been deleted'
+            message: `Unit of ID = ${unit._id} of Tenant= ${unit.tenant} has been deleted`
         })
       
     } catch (error) {

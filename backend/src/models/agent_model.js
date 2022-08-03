@@ -1,40 +1,52 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const Apartment = require('./apartment_model');
-const Admin = require('./admin_model');
+
 
 const agent_schema = new mongoose.Schema({
     first_name:{
         type: String,
+        required: true
     },
     last_name:{
         type: String,
+        required: true
     },
     email : {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     password:{
         type: String,
+        required: true
     },
     role : {
         type : String,
         default:'agent',
+        required: true
     },
     phone_number:{
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
-    assigned_to : {
+    apartment:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref : Apartment,
+        ref : 'Apartment',
+        required: false,
+        index: true
+    }],
+    registered_by:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin',
+        required: true,
         index: true
     },
-    registered_by :{
+    tenant:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Admin,
+        ref: 'Tenant',
+        required: false,
         index: true
-    }    
+    }]  
 })
 /// check on password
 // agent_schema.pre('save',async function(){

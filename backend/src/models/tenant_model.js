@@ -1,51 +1,55 @@
 // user model
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const Agent = require('./agent_model');
-const Unit = require('./unit_model');
+
+
 
 const tenant_schema =  new mongoose.Schema({
-    first_name: {
+    first_name:{
         type: String,
         required: true
     },
-
-    last_name: {
+    last_name:{
         type : String,
         required: true 
     },
-    email: {
+    email:{
         type : String,
         required: true 
     },
-    phone_number: {
+    phone_number:{
         type : String, 
          unique: true,
          required: true,},
-    password: {
+    password:{
         type : String,
         required: true,
     },
-    role : {
+    role:{
         type : String,
         default:'tenant',
     },
-    balance : {
+    balance:{
         type : Number,
         required: false
     },
-    unit_id : {
+    unit:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Unit,
-        required: true,
+        ref: 'Unit',
+        required: false,
         index: true
     },
-    agent_id: {
+    agent:{
         type : mongoose.Schema.Types.ObjectId,
-        ref: Agent,
-        required: true,
+        ref: 'Agent',
+        required: false,
         index: true
-    }
+    },
+    payment:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Payment',
+        required: false,
+        index:true
+    }]
 
 })
 

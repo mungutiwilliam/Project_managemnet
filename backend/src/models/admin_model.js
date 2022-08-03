@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 
 const admin_schema  = new mongoose.Schema({
@@ -11,11 +10,11 @@ const admin_schema  = new mongoose.Schema({
         type: String,
         required: true
     },
-    email : {
+    email:{
         type: String,
         required: true
     },
-    role : {
+    role:{
         type : String,
         default:'admin',
         enum: ['admin', 'super-admin']
@@ -23,7 +22,11 @@ const admin_schema  = new mongoose.Schema({
     password:{
         type: String,
         required: true
-    }
+    },
+    agent:[{
+        type : mongoose.Schema.Types.ObjectId,
+        ref:'Agent'
+    }]
    
 })
 

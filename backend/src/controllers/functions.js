@@ -78,10 +78,11 @@ const validateTokken = async function (req,res,next){
     }  
 }
 
+
+
 module.exports = {
     validateTokken,
     validateEmail,
     checkRole,
     generateToken
-    // auth
 }

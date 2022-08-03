@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Tenant = require('./tenant_model');
-const Apartment = require('./apartment_model');
+
 
 const unit_schema = new mongoose.Schema({
-    apartment_id: {
+    apartment:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Apartment,
+        ref: 'Apartment',
+        index: true,
         required: true
     },
     unit_type: {
@@ -17,9 +17,16 @@ const unit_schema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    price: {
+    price:{
         type : Number,
         required: true,
+    },
+    tenant:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Tenant',
+        index: true,
+        required: false
+        
     }
 })
 

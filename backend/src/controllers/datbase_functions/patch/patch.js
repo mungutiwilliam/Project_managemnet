@@ -59,7 +59,8 @@ const updateTenant = async function (req, res) {
             })  
 
         }  return res.status(200).send({
-            ...tenant,
+            changes,
+            tenant,
             message: 'Tenant has been updated'
         })
     

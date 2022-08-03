@@ -1,36 +1,28 @@
 const mongoose = require('mongoose');
-const Tenant = require('./tenant_model');
-const Apartment = require('./apartment_model');
-const Unit = require('./unit_model');
 
 
 const payment_schema = new mongoose.Schema({
-    paid_by: {
+    tenant:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Tenant,
-        index: true
+        ref: 'Tenant',
+        index: true,
+        required: true
     },
-    payment_for:[{
+    payment_for:{
         type: String,
         enum: ['rent','repairs', 'other'],
-        defaul:'rent',
+        default: 'rent',
         required: true
-    }],
-    decription:{
+    },
+    desc:{
         type: String,
+        required: true
+       
     },
-    apartment_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Apartment,
-        index: true
-    },
-    unit_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Unit,
-        index: true
-    },
-    payment_amount :{ 
-        type: Number
+    payment:{ 
+        type: Number,
+        required: true
+       
     }
 },{timestamps: true})
 

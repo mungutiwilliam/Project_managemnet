@@ -87,10 +87,63 @@ const registerApartment = async function(apartment_details, res){
     }
 }
 
+const addPayment = async function(payment_dets, res){
+    try {
+        const payment = new Payment({payment_dets})
+        await payment.save()
+        console.log(payment)
+        return res.status(200).send({
+            payment,
+            message: 'Payment has been added to records'
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
+}
+
+const vviewApartmentAgent = async function(req, res, next) {
+    try {
+        let  agent_id = req.params._id
+        let apartment = req.body._id
+        const agent = Agent.findById(agent_id)
+        let pipeline = [
+            {
+                "$lookup": {
+                    "from": "agents",
+                    "localField": "$agent",
+                    "foreignField": "$_id",
+                    "as": "Agent who is in charge"
+                }
+            }
+        ];
+       
+        
+        var cursor = await Apartment.aggregate(pipeline);
+
+        for(item in cursor){
+            item +=1
+            return res.status(200).send(item)
+          
+        }
+        
+    }
+            
+     catch (error) {
+        console.log(error)    
+    }
+    
+
+
+}
+
 module.exports = {
     registerAgent,
     registerTenant,
     registerAdmin,
     registerUnit,
-    registerApartment,  
+    registerApartment,
+    addPayment,
+    vviewApartmentAgent  
 }
