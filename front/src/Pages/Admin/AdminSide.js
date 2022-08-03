@@ -18,6 +18,13 @@ function AdminSide() {
 Agents
 
   </CNavItem>
+  <CNavItem href="/Addagents">
+
+
+Add Agents
+
+  </CNavItem>
+
 
   <CNavItem href="#">
 

@@ -14,6 +14,7 @@ import Adminhome from './Pages/Admin/Adminhome';
 import Tenant from './Pages/Users/Tenants/Tenant';
 import Issues from './Pages/Users/Tenants/Issues';
 import Issueflag from './Pages/Users/Agent/Issueflag';
+import Addagent from './Pages/Admin/Addagent';
 
 
 
@@ -32,6 +33,7 @@ function App() {
       <Route exact path="/tenant" element={ <Tenant/>}/>
       <Route exact path="/issueflag" element={ <Issues/>}/>
       <Route exact path="/Flagged" element={ <Issueflag/>}/>
+      <Route exact path="/Addagents" element={ <Addagent/>}/>
       </Routes>
     </BrowserRouter>
   
