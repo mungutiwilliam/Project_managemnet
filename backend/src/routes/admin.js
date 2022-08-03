@@ -38,9 +38,15 @@ const {
     addPayment, 
     registerTenant,
     registerAdmin,
-    registerUnit 
+    registerUnit,
+    loginAdmin,
+    loginTenant,
+    loginAgent, 
     
  } = require('../controllers/datbase_functions/post/post')
+
+
+ 
 
 
 router.get('/tenants', async function (req, res){
@@ -49,6 +55,7 @@ router.get('/tenants', async function (req, res){
 
 router.get('/agents', async function (req, res){
     await viewAllAgents(req.body, res);
+
 })
 router.get('/admins', async function (req, res){
     await viewAllAdmins(req.body, res);
@@ -77,7 +84,20 @@ router.get('/units/unit/:id',async function (req, res){
 
 })
 
-router.post('/register_agent',async function (req, res){
+router.post('/login_admin', async function (req, res){
+    await loginAdmin(req, res);
+})
+
+router.post('/login_tenant', async function (req, res){
+    await loginTenant(req, res);
+})
+
+router.post('/login_agent', async function (req, res){
+    await loginAgent(req, res);
+})
+
+
+router.post('/register_agent', async function (req, res){
     await registerAgent(req.body, res);
 })
 

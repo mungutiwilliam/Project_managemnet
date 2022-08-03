@@ -159,7 +159,6 @@ const viewUnitOfTenant = async function(req, res,id,next) {
         return res.status(500).send(error)
 
     }
-
 }
 
 const viewAllTenantPayments= async function(req, res, next) {

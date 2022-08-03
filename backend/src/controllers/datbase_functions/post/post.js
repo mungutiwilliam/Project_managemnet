@@ -1,9 +1,11 @@
 const Unit = require('../../../models/unit_model');
+const Agent = require('../../../models/agent_model');
+const Admin = require('../../../models/admin_model');
 const Tenant = require('../../../models/tenant_model');
 const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
-const Agent = require('../../../models/agent_model');
-const Admin = require('../../../models/admin_model');
+const bcrypt = require ('bcrypt');
+const saltRounds = 10
 
 const {validateTokken,
     validateEmail,
@@ -12,7 +14,11 @@ const {validateTokken,
 
 const registerAgent = async function(agent_details, res){
     try{
-        const agent = new Agent(agent_details)
+        const hashedpassword = await bcrypt.hash(agent_details.password, saltRounds)
+        const agent = new Agent({
+            ...agent_details,
+            password:hashedpassword})
+
         await agent.save()
         console.log(agent)
         return res.status(200).send({
@@ -26,9 +32,12 @@ const registerAgent = async function(agent_details, res){
     }
 }
 
-const registerTenant = async function(agent_details, res){
+const registerTenant = async function(tenant_details, res){
     try{
-        const tenant = new Tenant(agent_details)
+        const hashedpassword = await bcrypt.hash(tenant_details.password, saltRounds)
+        const tenant = new Tenant({
+             ...tenant_details,
+             password: hashedpassword})
         await tenant.save()
         console.log(tenant)
         return res.status(200).send({
@@ -44,7 +53,11 @@ const registerTenant = async function(agent_details, res){
 
 const registerAdmin = async function(admin_dets, res){
     try {
-        const admin = new Admin(admin_dets)
+        const hashedpassword = await bcrypt.hash(admin_dets.password, saltRounds)
+        const admin = new Admin({
+            ...admin_dets,
+             password: hashedpassword})
+
         await admin.save()
         console.log(admin)
         return res.status(200).send({
@@ -118,7 +131,6 @@ const vviewApartmentAgent = async function(req, res, next) {
                 }
             }
         ];
-       
         
         var cursor = await Apartment.aggregate(pipeline);
 
@@ -126,17 +138,108 @@ const vviewApartmentAgent = async function(req, res, next) {
             item +=1
             return res.status(200).send(item)
           
-        }
-        
+        }  
     }
             
      catch (error) {
         console.log(error)    
     }
-    
-
 
 }
+
+const loginAdmin = async function(req, res){
+
+    try {
+        let {email, password} = req.body 
+
+        console.log(email)
+        console.log(password)
+
+        const admin = await Admin.findOne({email})
+        console.log(admin)
+        
+        if (admin){
+            const comp = bcrypt.compare(password, admin.password)
+            if (comp){
+                return res.send({message: `Welcome ${admin.first_name}, you have been logged as admin `})
+            } else {
+                return res.send({message:"Wrong Email or Password"});
+              }
+            } else {
+                return res.send("Wrong Username or Password");
+        }
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message :"Internal Server error Occured",
+            error: error});   
+    }
+}
+
+
+const loginAgent = async function(req, res){
+  
+
+    try {
+        let {email,password } = req.body
+
+        console.log(email)
+        console.log(password)
+
+        const agent =await Agent.findOne({email})
+        console.log(agent)
+        if (agent){
+            const comp =  bcrypt.compare(password, agent.password)
+            if (comp){
+                return res.send({Message:`Welcome ${agent.first_name}, you have been logged as an agent`})
+            } else {
+                return res.send({message:"Wrong Email or Password"});
+              }
+            } else {
+                return res.send("Wrong Username or Password");
+        }
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message :"Internal Server error Occured",
+            error});   
+    }
+}
+
+const loginTenant = async function(req, res){
+  
+
+    try {
+        let {email, password} = req.body
+
+        console.log(email)
+        console.log(password)
+   
+        const tenant = await Tenant.findOne({email})
+        console.log(tenant)
+
+        if (tenant){
+            const comp = bcrypt.compare(password, tenant.password)
+            if (comp){
+                return res.send({message:`Welcome ${tenant.first_name}, you have been logged as an agent`})
+            }else if(!cmp) {
+                return res.send({message:"Wrong Email or Password"});
+              }
+            } else {
+                return res.send({message: "No Such User Exists"});
+        }
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            message :"Internal Server error Occured",
+            error});   
+    }
+}
+
+
 
 module.exports = {
     registerAgent,
@@ -145,5 +248,8 @@ module.exports = {
     registerUnit,
     registerApartment,
     addPayment,
-    vviewApartmentAgent  
+    vviewApartmentAgent,
+    loginAdmin,
+    loginTenant,
+    loginAgent
 }
