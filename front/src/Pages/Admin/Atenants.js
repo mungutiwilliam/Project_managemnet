@@ -1,4 +1,5 @@
 import { Table, useAsyncList, useCollator } from "@nextui-org/react";
+import AdminSide from "./AdminSide";
 
 export default function Atenants() {
   const collator = useCollator({ numeric: true });
@@ -26,6 +27,8 @@ export default function Atenants() {
   }
   const list = useAsyncList({ load, sort });
   return (
+    <>
+    <div className="sidenave"><AdminSide/></div>
     <Table
       aria-label="Example static collection table"
       css={{ minWidth: "100%", height: "calc($space$14 * 10)" }}
@@ -54,5 +57,6 @@ export default function Atenants() {
         )}
       </Table.Body>
     </Table>
+    </>
   );
 }

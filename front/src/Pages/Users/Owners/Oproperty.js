@@ -1,38 +1,29 @@
 import React from 'react';
-import { Input, Spacer, Container,Card,Radio} from "@nextui-org/react";
+import { Input, Spacer, Container,Card,label} from "@nextui-org/react";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import Oside from './Oside';
+import './owner.css'
 export default function Oproperty() {
-  return (
-    <>
-    <Oside/>
-    <Container fluid>
-      <Card align="center" style={{width:"80%",marginTop:"-40vh",marginLeft:"40vh"}}>
-    <Spacer y={2.5} />
-      <Input bordered labelPlaceholder="Property Name" initialValue="NextUI" />
-      <Spacer y={1.5} />
-      <Input clearable bordered labelPlaceholder="Location" initialValue="NextUI" />
-      <Spacer y={1.5} />
-      <Radio.Group row value="primary"  >
-<Radio value="primary" color="primary" >
- <label>Software Engineering </label> 
-</Radio>
-<Radio value="secondary" color="secondary" textColor="#ffffff">
-<label>Security </label> 
-</Radio>
-<Radio value="succcess" color="success" >
- <label>Distributed Systems </label> 
-</Radio>
-<Radio value="gradient" color="primary" textColor="#ffffff">
-<label>Networking </label> 
-</Radio>
-</Radio.Group>
 
-      <Spacer y={1.5} />
-      <Input clearable bordered labelPlaceholder="Price" initialValue="NextUI" />
   
+  return (
+    <div className="owners">
+    <Oside/>
+      <Card style={{width:"120vh",marginTop:"-30vh",marginLeft:"50vh", height:"60vh"}}>
+        <label style={{align:"center",justifyContent:"center"}}>Enter Property Details</label>
+        <Input clearable bordered labelPlaceholder="Name" initialValue="NextUI" />
       <Spacer y={2.5} />
+      <Input
+        clearable
+        underlined
+        labelPlaceholder="Name"
+        initialValue="NextUI"
+      />
+      <Spacer y={1.5} />
+      <Input clearable label="Name" placeholder="Name" initialValue="NextUI" />
       </Card>
-      </Container>
-    </>
+    </div>
   );
 }

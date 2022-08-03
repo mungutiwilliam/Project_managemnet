@@ -7,13 +7,11 @@ function Aside() {
     <div>
       <CSidebar>
 
-<CSidebarBrand>Sidebar Brand</CSidebarBrand>
+<CSidebarBrand>Agent</CSidebarBrand>
 
 <CSidebarNav>
 
-  <CNavTitle>Nav Title</CNavTitle>
-
-  <CNavItem href="/Table">
+  <CNavItem href="/TenantsInfo">
 
 
 Tenants
@@ -23,32 +21,26 @@ Tenants
   <CNavItem href="#">
 
 
-
-    With badge
-
-    <CBadge color="primary ms-auto">NEW</CBadge>
+Add Tenants
 
   </CNavItem>
 
-  <CNavGroup toggler="Nav dropdown">
 
     <CNavItem href="#">
 
- Nav dropdown item
+Properties
 
     </CNavItem>
 
-    <CNavItem href="#">
+ <CNavItem href="/Flagged">
 
- Nav dropdown item
+Flagged Issues
 
-    </CNavItem>
+</CNavItem>
 
-  </CNavGroup>
 
 </CSidebarNav>
 
-<CSidebarToggler />
 
 </CSidebar>
     </div>

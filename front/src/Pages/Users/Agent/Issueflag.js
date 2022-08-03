@@ -1,14 +1,12 @@
 import React from 'react'
 import Aside from './Aside'
-import './agent.css'
-import Atable from './Atable';
 
-function Mgent() {
+function Issueflag() {
   return (
     <div className="agent">
-      <Aside/>
+        <Aside/>
     </div>
   )
 }
 
-export default Mgent
+export default Issueflag

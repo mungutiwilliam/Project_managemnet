@@ -1,16 +1,15 @@
 import React from 'react'
-import Aside from '../Users/Agent/Aside'
-import Atenants from './Atenants'
-import Ausers from './Ausers'
 import './Admin.css'
-
+import AdminSide from './AdminSide'
 function Adminhome() {
   return (
-    <>
-    <Aside/>
-    <Ausers/>
   
-    </>
+    <div className="admin">
+    
+    <AdminSide/>
+   
+  
+    </div>
   )
 }
 

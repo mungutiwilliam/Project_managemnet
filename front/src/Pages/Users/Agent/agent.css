@@ -1,0 +1,19 @@
+.agent{
+    background: url("../UserImages/index.jpg") center center/cover
+      no-repeat;
+      height:92.8vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
+      object-fit: contain;
+}
+.table{
+  width:70%;
+  background-color:white;
+  justify-content: center;
+  align-items: center;
+  margin-left:40vh;
+  margin-top:-30vh;
+
+}

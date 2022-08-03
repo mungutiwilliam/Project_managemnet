@@ -7,25 +7,11 @@ function Tside() {
     <div>
       <CSidebar>
 
-<CSidebarBrand>Sidebar</CSidebarBrand>
+<CSidebarBrand>TENANT</CSidebarBrand>
 
 <CSidebarNav>
 
-  <CNavTitle>Nav Title</CNavTitle>
-
-
-  <CNavItem href="/property">
-
-
-
-View Property
-
-    <CBadge color="primary ms-auto">Properties</CBadge>
-
-  </CNavItem>
-
-
-    <CNavItem href="#">
+    <CNavItem href="/issueflag">
 
  Flag Issue
 
@@ -38,8 +24,6 @@ View Property
     </CNavItem>
 
 </CSidebarNav>
-
-<CSidebarToggler />
 
 </CSidebar>
     </div>

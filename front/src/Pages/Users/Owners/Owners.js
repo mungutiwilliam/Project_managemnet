@@ -5,10 +5,9 @@ import Otable from './Otable'
 
 function Owners() {
   return (
-    <>
+    <div className="owners">
     <Oside/>
-    <Otable/>
-    </>
+    </div>
   )
 }
 

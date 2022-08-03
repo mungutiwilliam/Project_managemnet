@@ -2,42 +2,39 @@ import React from 'react'
 import { CSidebar,CSidebarBrand,CSidebarNav,CNavItem,CNavTitle,CBadge,CNavGroup,CSidebarToggler } from '@coreui/react'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-function Oside() {
+function AdminSide() {
   return (
     <div>
       <CSidebar>
 
-<CSidebarBrand>OWNER</CSidebarBrand>
+<CSidebarBrand>ADMIN</CSidebarBrand>
 
 <CSidebarNav>
+
 
   <CNavItem href="/Table">
 
 
-Tenants
+Agents
 
   </CNavItem>
 
-  <CNavItem href="/addprop">
+  <CNavItem href="#">
 
-
-
-Add Property
-
-    <CBadge color="primary ms-auto">Properties</CBadge>
+Owners
 
   </CNavItem>
 
 
     <CNavItem href="#">
 
- Properties
+Properties
 
     </CNavItem>
 
     <CNavItem href="#">
 
- Payments
+ Tenants
 
     </CNavItem>
 
@@ -49,4 +46,4 @@ Add Property
   )
 }
 
-export default Oside
+export default AdminSide
