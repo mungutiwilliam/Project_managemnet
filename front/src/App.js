@@ -18,6 +18,8 @@ import Addagent from './Pages/Admin/Addagent';
 import Agents from './Pages/Admin/Agents';
 import Ownerlist from './Pages/Admin/Ownerlist';
 import Tenants from './Pages/Admin/Tenants';
+import Auth from './Pages/Login & Signup/Auth';
+
 
 
 
@@ -28,7 +30,7 @@ function App() {
   
       <Routes>
       <Route exact path="/" element={ <Home/> } />
-      <Route exact path="/agent" element={ <Mgent/> } />
+      <Route exact path="/Login" element={ <Auth/> } />
       <Route exact path="/owner" element={ <Owners/> } />
       <Route exact path="/addprop" element={ <AddProperty/> } />
       <Route exact path="/TenantsInfo" element={ <Atable/>}/>

@@ -16,8 +16,7 @@ function Navmenu() {
 
     </Nav>
     <Nav>
-      <Nav.Link href="/agent">Login</Nav.Link>
-      <Nav.Link href="/owner">Sign-Up</Nav.Link>
+      <Nav.Link href="/Login">Login</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Container>
