@@ -9,8 +9,15 @@
       object-fit: contain;
 }
 .form{
-    background-color:white;
+    background:url("../Images/agent.png")center center/cover
+    no-repeat;
     width: 50%;
+    margin-left:20%;
+    margin-top: -20%;
+}
+.agents{
+background-color:white;
+    width: 70%;
     margin-left:20%;
     margin-top: -20%;
 }

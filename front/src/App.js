@@ -15,6 +15,9 @@ import Tenant from './Pages/Users/Tenants/Tenant';
 import Issues from './Pages/Users/Tenants/Issues';
 import Issueflag from './Pages/Users/Agent/Issueflag';
 import Addagent from './Pages/Admin/Addagent';
+import Agents from './Pages/Admin/Agents';
+import Ownerlist from './Pages/Admin/Ownerlist';
+import Tenants from './Pages/Admin/Tenants';
 
 
 
@@ -34,6 +37,10 @@ function App() {
       <Route exact path="/issueflag" element={ <Issues/>}/>
       <Route exact path="/Flagged" element={ <Issueflag/>}/>
       <Route exact path="/Addagents" element={ <Addagent/>}/>
+      <Route exact path="/Agents" element={ <Agents/>}/>
+      <Route exact path="/Ownerlist" element={ <Ownerlist/>}/>
+      <Route exact path="/Tenantslist" element={ <Tenants/>}/>
+      
       </Routes>
     </BrowserRouter>
   
