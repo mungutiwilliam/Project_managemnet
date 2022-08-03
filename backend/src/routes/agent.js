@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-var passport = require('passport');
-require('../middleware/passport')(passport);
+// var passport = require('passport');
+// require('../middleware/passport')(passport);
 
 const {auth} = require('../controllers/functions')
 

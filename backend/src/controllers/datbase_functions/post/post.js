@@ -161,7 +161,11 @@ const loginAdmin = async function(req, res){
         if (admin){
             const comp = bcrypt.compare(password, admin.password)
             if (comp){
-                return res.send({message: `Welcome ${admin.first_name}, you have been logged as admin `})
+                let token = generateToken(admin)
+                return res.send({
+                    message: `Welcome ${admin.first_name}, you have been logged as admin `,
+                    token
+        })
             } else {
                 return res.send({message:"Wrong Email or Password"});
               }
@@ -197,7 +201,7 @@ const loginAgent = async function(req, res){
                 return res.send({message:"Wrong Email or Password"});
               }
             } else {
-                return res.send("Wrong Username or Password");
+                return res.send({message:"No Such User Exists"});
         }
         
     } catch (error) {

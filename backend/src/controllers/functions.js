@@ -5,15 +5,15 @@ const Apartment = require('../models/apartment_model');
 const Agent = require('../models/agent_model');
 const Admin = require('../models/admin_model');
 const {SECRET} = require('../config/index');
+const jwt = require('jsonwebtoken')
 
-
-// const auth = passport.authenticate("jwt", {session : false});
+//const auth = passport.authenticate("jwt", {session : false});
 
 const checkRole = role =>{
     if (role.name === "admin"){
 
     }
-} 
+}
 
 const validateEmail = async email =>{
     let details = req.body
@@ -21,68 +21,82 @@ const validateEmail = async email =>{
         details = await Admin.findOne({email})
         if (!details){
             return false;
-    
+
         }else return true;
-    
+
     }else if (role === "agent"){
         details = await Agent.findOne({email})
         if (!details){
             return false;
-    
+
         }else return true;
 
     }else {
         details = await Tenant.findOne({email})
         if (!details){
             return false;
-    
+
         }else return true;
 
 
     }
 }
 
-const generateToken = function(req, res, next){
-    var user = req.body
+const generateToken = function(user){
     let token = jwt.sign({
             user_id: user._id,
             role: user.role,
             user_email: user.email
-        }, SECRET, {expiresIn: "7 days"})
-
-        // let result = {
-        //     email: user.email,
-        //     role: user.role,
-        //     token: token,
-        //     tokenType: "Bearer",
-        //     expiresIn: 168
-        // }
-        // next()
-        return token
+        }, SECRET, {expiresIn: "30 min"})
+       return {token}
 }
 
 
-const validateTokken = async function (req,res,next){
-    
-    var bearerHeader = req.headers['authorization']
-    if (typeof bearerHeader !== 'undefined'){
-        const bearer = bearerHeader.split('')
-        const bearerToken = bearer[1]
-        req.token = bearerToken
-        next();
-    }
-    else{
-        return res.status(401).send({
-            message: 'You are not logged. Please log in'
-        })
-    }  
+const valTokkenfetchUser = async function (req, res, next){
+        if (req.headers && req.headers.authorization) {
+            let authorization = req.headers.authorization
+            let decoded
+
+            console.log(req.headers)
+            console.log(authorization)
+            try{
+                decoded = jwt.verify(authorization,SECRET)
+                console.log(decoded)
+            }catch(err){
+
+                return res.status(401).send("Tokken not valid") 
+            }
+            let useremail = decoded.email
+            console.log(decoded)
+            try {
+                const admin =  await Admin.findOne({email:useremail})
+                    {
+                        if(!admin){
+                            next()
+                            return admin
+                            
+
+                        }else 
+                        {
+                            reject("No token found")
+                        }
+                        
+                    
+                }
+            } catch (error) {
+                console.log (error)
+                return res.status(501).send(error)
+            }
+ }
 }
+
 
 
 
 module.exports = {
-    validateTokken,
+    valTokkenfetchUser,
     validateEmail,
     checkRole,
     generateToken
 }
+

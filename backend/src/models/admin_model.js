@@ -12,12 +12,13 @@ const admin_schema  = new mongoose.Schema({
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        index:true
     },
     role:{
         type : String,
         default:'admin',
-        enum: ['admin', 'super-admin']
+        enum: ['admin', 'super-admin', 'tenant','agent']
     },
     password:{
         type: String,
@@ -25,8 +26,21 @@ const admin_schema  = new mongoose.Schema({
     },
     agent:[{
         type : mongoose.Schema.Types.ObjectId,
-        ref:'Agent'
-    }]
+        ref:'User'
+    }],
+    issue:{
+        type: String,
+        unique: true
+    },
+    payment:{
+        type: String,
+        unique: true,
+
+    },
+    unit:{
+        type: String,
+        unique: true
+    }
    
 })
 

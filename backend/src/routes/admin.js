@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-var passport = require('passport');
-require('../middleware/passport')(passport);
+// var passport = require('passport');
+// require('../middleware/passport')(passport);
 
-const {auth} = require('../controllers/functions')
+const {valTokkenfetchUser} = require('../controllers/functions')
 
 
 const {
@@ -49,19 +49,20 @@ const {
  
 
 
-router.get('/tenants', async function (req, res){
-    await viewAllTenants(req.body, res);
+router.get('/tenants', valTokkenfetchUser, async function (req, res){
+    console.log(req)
+    await viewAllTenants(req, res);
 })
 
-router.get('/agents', async function (req, res){
-    await viewAllAgents(req.body, res);
+router.get('/agents',valTokkenfetchUser, async function (req, res){
+    await viewAllAgents(req, res);
 
 })
-router.get('/admins', async function (req, res){
-    await viewAllAdmins(req.body, res);
+router.get('/admins',valTokkenfetchUser, async function (req, res){
+    await viewAllAdmins(req, res);
 })
 
-router.get('/apartments',async function (req, res){
+router.get('/apartments',valTokkenfetchUser,async function (req, res){
     await viewAllApartments(req.body, res);
 })
 
