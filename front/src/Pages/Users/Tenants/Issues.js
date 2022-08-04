@@ -42,9 +42,10 @@ function Issues() {
     <Slide bottom>
     <Spacer y={2.5} />
 <Card color="white" align="center" style={{backgroundColor:"white", color:"black",width:"100%",height:"100%",marginTop:"-51.5px"}} >
+
  <label>Topic</label>
  <Spacer y={0.0004} />
-  <Input clearable bordered labelPlaceholder=""  style={{ color:"white"}} initialValue="Enter Name Here"  value={toSend.from_name} name="from_name" onChange={handleChange}/>
+  <Input clearable bordered labelPlaceholder=""  style={{ color:"black"}} initialValue="Enter Name Here"  value={toSend.from_name} name="from_name" onChange={handleChange}/>
   <Spacer y={0.5} />
   <label>More Details on Issue</label>
  <Textarea

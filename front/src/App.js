@@ -27,19 +27,20 @@ import Flag from './Pages/Users/Agent/Flag';
 
 
 function App() {
+  const user = true;
   return (
     <BrowserRouter>
       <Navmenu/>
   
       <Routes>
       <Route exact path="/" element={ <Home/> } />
-      <Route exact path="/Login" element={ <Auth/> } />
-      <Route exact path="/owner" element={ <Owners/> } />
-      <Route exact path="/addprop" element={ <AddProperty/> } />
-      <Route exact path="/TenantsInfo" element={ <Atable/>}/>
-      <Route exact path="/admin" element={ <Tenant/>}/>
-      <Route exact path="/tenant" element={ <Tenant/>}/>
-      <Route exact path="/issueflag" element={ <Issues/>}/>
+      <Route exact path="/Login" element={ user? <Home/>: <Auth/> } />
+      <Route exact path="/owner" element={user?<Owners/> : <Auth/> } />
+      <Route exact path="/addprop" element={ user? <Auth/>:<AddProperty/> } />
+      <Route exact path="/TenantsInfo" element={user? <Auth/>:  <Atable/>}/>
+      <Route exact path="/admin" element={user? <Tenant/>:<Home/>}/>
+      <Route exact path="/tenant" element={ user? <Home/>:<Tenant/>}/>
+      <Route exact path="/issueflag" element={user?<Home/>:<Issues/>}/>
       <Route exact path="/Flagged" element={ <Flag/>}/>
       <Route exact path="/Addagents" element={ <Addagent/>}/>
       <Route exact path="/Agents" element={ <Agents/>}/>

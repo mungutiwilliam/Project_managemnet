@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState ,onClick} from "react"
 import './Auth.css'
 
 function Auth() {
@@ -7,6 +7,7 @@ function Auth() {
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
+  const [user,setUser] = useState();
 
   if (authMode === "signin") {
     return (
@@ -37,7 +38,7 @@ function Auth() {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary"onClick={setUser(true)}>
                 Login
               </button>
             </div>
