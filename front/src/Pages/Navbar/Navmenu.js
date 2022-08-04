@@ -10,7 +10,7 @@ function Navmenu() {
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
       <Nav.Link href="/features">Features</Nav.Link>
-      <Nav.Link href="/pricing">Pricing</Nav.Link>
+     <Nav.Link href="/pricing">Pricing</Nav.Link>
       <Nav.Link href="/admin">About Us</Nav.Link>
       
 

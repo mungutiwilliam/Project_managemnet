@@ -17,3 +17,11 @@
   margin-top:-30vh;
 
 }
+.form2{
+  background:url("../UserImages/index8.jpg")center center/cover
+  no-repeat;
+  width: 50%;
+  margin-left:20%;
+  margin-top: -15%;
+  border:round;
+}

@@ -2,12 +2,16 @@ import React from 'react'
 import { CSidebar,CSidebarBrand,CSidebarNav,CNavItem,CNavTitle,CBadge,CNavGroup,CSidebarToggler } from '@coreui/react'
 import '@coreui/coreui/dist/css/coreui.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import VillaIcon from '@mui/icons-material/Villa';
+import PeopleIcon from '@mui/icons-material/People';
+import FlagIcon from '@mui/icons-material/Flag';
 function Aside() {
   return (
     <div>
       <CSidebar>
 
-<CSidebarBrand>Agent</CSidebarBrand>
+<CSidebarBrand>Agent<SupportAgentIcon /></CSidebarBrand>
 
 <CSidebarNav>
 
@@ -15,10 +19,10 @@ function Aside() {
 
 
 Tenants
-
+<PeopleIcon/>
   </CNavItem>
 
-  <CNavItem href="#">
+  <CNavItem href="/Addtenant">
 
 
 Add Tenants
@@ -26,15 +30,16 @@ Add Tenants
   </CNavItem>
 
 
-    <CNavItem href="#">
+    <CNavItem href="/Propertylist">
 
 Properties
+<VillaIcon/>
 
     </CNavItem>
 
  <CNavItem href="/Flagged">
 
-Flagged Issues
+Flagged Issue<FlagIcon/>
 
 </CNavItem>
 

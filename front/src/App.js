@@ -19,6 +19,9 @@ import Agents from './Pages/Admin/Agents';
 import Ownerlist from './Pages/Admin/Ownerlist';
 import Tenants from './Pages/Admin/Tenants';
 import Auth from './Pages/Login & Signup/Auth';
+import AddTenant from './Pages/Users/Agent/AddTenant';
+import Property from './Pages/Users/Agent/Property';
+import Flag from './Pages/Users/Agent/Flag';
 
 
 
@@ -34,14 +37,16 @@ function App() {
       <Route exact path="/owner" element={ <Owners/> } />
       <Route exact path="/addprop" element={ <AddProperty/> } />
       <Route exact path="/TenantsInfo" element={ <Atable/>}/>
-      <Route exact path="/admin" element={ <Adminhome/>}/>
+      <Route exact path="/admin" element={ <Tenant/>}/>
       <Route exact path="/tenant" element={ <Tenant/>}/>
       <Route exact path="/issueflag" element={ <Issues/>}/>
-      <Route exact path="/Flagged" element={ <Issueflag/>}/>
+      <Route exact path="/Flagged" element={ <Flag/>}/>
       <Route exact path="/Addagents" element={ <Addagent/>}/>
       <Route exact path="/Agents" element={ <Agents/>}/>
       <Route exact path="/Ownerlist" element={ <Ownerlist/>}/>
       <Route exact path="/Tenantslist" element={ <Tenants/>}/>
+      <Route exact path="/AddTenant" element={ <AddTenant/>}/>
+      <Route exact path="/Propertylist" element={ <Property/>}/>
       
       </Routes>
     </BrowserRouter>

@@ -10,10 +10,12 @@
 }
 .issues{
   width:70%;
-  background-color:white;
   justify-content: center;
   align-items: center;
   margin-left:40vh;
-  margin-top:-30vh;
+  margin-top:-20vh;
 
+}
+.h1{
+  color:black;
 }

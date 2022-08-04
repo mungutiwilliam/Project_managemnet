@@ -38,7 +38,7 @@ function Auth() {
             </div>
             <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-primary">
-                Submit
+                Login
               </button>
             </div>
             <p className="text-center mt-2">
@@ -87,7 +87,7 @@ function Auth() {
           </div>
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">
-              Submit
+              Sign Up
             </button>
           </div>
           <p className="text-center mt-2">

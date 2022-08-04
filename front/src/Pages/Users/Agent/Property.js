@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UpgradeIcon from '@mui/icons-material/Upgrade';
 import Aside from "./Aside";
-export default function Flag() {
+export default function Property() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
     const res = await fetch("https://swapi.py4e.com/api/people/?search", {
@@ -41,13 +41,16 @@ export default function Flag() {
     >
       <Table.Header>
         <Table.Column key="name" allowsSorting>
-  Title
+          Name
         </Table.Column>
         <Table.Column key="height" allowsSorting>
- Issue
+          Height
         </Table.Column>
         <Table.Column key="mass" allowsSorting>
-          Property
+          Mass
+        </Table.Column>
+        <Table.Column key="birth_year" allowsSorting>
+          Birth Year
         </Table.Column>
       </Table.Header>
       <Table.Body items={list.items} loadingState={list.loadingState}>
@@ -60,5 +63,5 @@ export default function Flag() {
     </Table>
 </div>
     </div>
-      );
-    }
+  );
+}
