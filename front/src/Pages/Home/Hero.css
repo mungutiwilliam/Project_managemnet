@@ -1,0 +1,22 @@
+
+.hero-section{
+    background:url(../Images/index6.jpg) center center/cover
+    no-repeat;
+    height:92.3vh;
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.2);
+     mix-blend-mode: multiply;
+     background-blend-mode: multiply;
+}
+.container{
+   background-color:blurry;
+   width: 40%;
+}
+.rent{
+   margin-top:-65vh;
+   margin-left:118.4vh;
+   height:20vh;
+   width:20vh;
+}
