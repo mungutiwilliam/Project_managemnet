@@ -8,7 +8,7 @@ import UpgradeIcon from '@mui/icons-material/Upgrade';
 export default function Agents() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
-    const res = await fetch("https://swapi.py4e.com/api/people/?search", {
+    const res = await fetch("http://localhost:3001/admin/agents", {
       signal,
     });
     const json = await res.json();
