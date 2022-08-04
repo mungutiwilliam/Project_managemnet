@@ -1,7 +1,10 @@
 import { Table, useAsyncList, useCollator } from "@nextui-org/react";
+import './agent.css'
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
 import Aside from "./Aside";
-
-export default function Atenants() {
+export default function Property() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
     const res = await fetch("https://swapi.py4e.com/api/people/?search", {
@@ -28,7 +31,7 @@ export default function Atenants() {
   const list = useAsyncList({ load, sort });
   return (
     <div className="agent">
-    <Aside/>
+    <div className="sidenave"><Aside/></div>
     <div className="table">
     <Table
       aria-label="Example static collection table"
@@ -58,7 +61,7 @@ export default function Atenants() {
         )}
       </Table.Body>
     </Table>
-    </div>
+</div>
     </div>
   );
 }

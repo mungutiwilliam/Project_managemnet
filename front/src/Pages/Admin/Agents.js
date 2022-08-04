@@ -1,7 +1,11 @@
 import { Table, useAsyncList, useCollator } from "@nextui-org/react";
-import Aside from "./Aside";
+import AdminSide from "./AdminSide";
+import './Admin.css'
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
 
-export default function Atenants() {
+export default function Agents() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
     const res = await fetch("https://swapi.py4e.com/api/people/?search", {
@@ -27,9 +31,8 @@ export default function Atenants() {
   }
   const list = useAsyncList({ load, sort });
   return (
-    <div className="agent">
-    <Aside/>
-    <div className="table">
+    <div className="admin"><AdminSide/>
+    <div className="agents">
     <Table
       aria-label="Example static collection table"
       css={{ minWidth: "100%", height: "calc($space$14 * 10)" }}
@@ -37,17 +40,14 @@ export default function Atenants() {
       onSortChange={list.sort}
     >
       <Table.Header>
-        <Table.Column key="name" allowsSorting>
-          Name
+        <Table.Column key="first_name" allowsSorting>
+         First Name
         </Table.Column>
-        <Table.Column key="height" allowsSorting>
-          Height
+        <Table.Column key="last_name" allowsSorting>
+          Last Name
         </Table.Column>
-        <Table.Column key="mass" allowsSorting>
-          Mass
-        </Table.Column>
-        <Table.Column key="birth_year" allowsSorting>
-          Birth Year
+        <Table.Column key="email" >
+          Email
         </Table.Column>
       </Table.Header>
       <Table.Body items={list.items} loadingState={list.loadingState}>
@@ -58,6 +58,13 @@ export default function Atenants() {
         )}
       </Table.Body>
     </Table>
+    <Button variant="contained" endIcon={<DeleteIcon/>}>
+Delete
+</Button>
+<label>_</label>
+<Button variant="contained" endIcon={<UpgradeIcon/>}>
+Update
+</Button>
     </div>
     </div>
   );

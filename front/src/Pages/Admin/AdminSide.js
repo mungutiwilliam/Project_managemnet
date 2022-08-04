@@ -5,44 +5,52 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import VillaIcon from '@mui/icons-material/Villa';
 import PeopleIcon from '@mui/icons-material/People';
-import FlagIcon from '@mui/icons-material/Flag';
-function Aside() {
+function AdminSide() {
   return (
     <div>
       <CSidebar>
 
-<CSidebarBrand>Agent<SupportAgentIcon /></CSidebarBrand>
+<CSidebarBrand>ADMIN</CSidebarBrand>
 
 <CSidebarNav>
 
-  <CNavItem href="/TenantsInfo">
+
+  <CNavItem href="/Agents">
 
 
-Tenants
-<PeopleIcon/>
-  </CNavItem>
-
-  <CNavItem href="/Addtenant">
-
-
-Add Tenants
+Agents
+<SupportAgentIcon />
 
   </CNavItem>
+  <CNavItem href="/Addagents">
 
 
-    <CNavItem href="/Propertylist">
+Add Agents 
+
+
+  </CNavItem>
+
+
+  <CNavItem href="/Ownerlist">
+
+Owners
+
+  </CNavItem>
+
+
+    <CNavItem href="#">
 
 Properties
 <VillaIcon/>
 
     </CNavItem>
 
- <CNavItem href="/Flagged">
+    <CNavItem href="/Tenantslist">
 
-Flagged Issue<FlagIcon/>
+ Tenants
+ <PeopleIcon/>
 
-</CNavItem>
-
+    </CNavItem>
 
 </CSidebarNav>
 
@@ -52,4 +60,4 @@ Flagged Issue<FlagIcon/>
   )
 }
 
-export default Aside
+export default AdminSide

@@ -1,6 +1,8 @@
 import { Table, useAsyncList, useCollator } from "@nextui-org/react";
-import Aside from "./Aside";
-
+import AdminSide from "./AdminSide";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
 export default function Atenants() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
@@ -27,9 +29,8 @@ export default function Atenants() {
   }
   const list = useAsyncList({ load, sort });
   return (
-    <div className="agent">
-    <Aside/>
-    <div className="table">
+    <>
+    <div className="sidenave"><AdminSide/></div>
     <Table
       aria-label="Example static collection table"
       css={{ minWidth: "100%", height: "calc($space$14 * 10)" }}
@@ -58,7 +59,13 @@ export default function Atenants() {
         )}
       </Table.Body>
     </Table>
-    </div>
-    </div>
+    <Button variant="contained" endIcon={<DeleteIcon/>}>
+Delete
+</Button>
+<label>_</label>
+<Button variant="contained" endIcon={<UpgradeIcon/>}>
+Update
+</Button>
+    </>
   );
 }

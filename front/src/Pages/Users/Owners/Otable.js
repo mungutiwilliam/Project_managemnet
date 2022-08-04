@@ -1,7 +1,8 @@
 import { Table, useAsyncList, useCollator } from "@nextui-org/react";
-import Aside from "./Aside";
+import Oside from "./Oside";
+import './owner.css'
 
-export default function Atenants() {
+export default function Otable() {
   const collator = useCollator({ numeric: true });
   async function load({ signal }) {
     const res = await fetch("https://swapi.py4e.com/api/people/?search", {
@@ -28,7 +29,7 @@ export default function Atenants() {
   const list = useAsyncList({ load, sort });
   return (
     <div className="agent">
-    <Aside/>
+    <Oside/>
     <div className="table">
     <Table
       aria-label="Example static collection table"
