@@ -1,71 +1,53 @@
-import { Table, useAsyncList, useCollator } from "@nextui-org/react";
-import AdminSide from "./AdminSide";
-import './Admin.css'
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import UpgradeIcon from '@mui/icons-material/Upgrade';
-
-export default function Agents() {
-  const collator = useCollator({ numeric: true });
-  async function load({ signal }) {
-    const res = await fetch("https://swapi.py4e.com/api/people/?search", {
-      signal,
-    });
-    const json = await res.json();
-    return {
-      items: json.results,
-    };
-  }
-  async function sort({ items, sortDescriptor }) {
-    return {
-      items: items.sort((a, b) => {
-        let first = a[sortDescriptor.column];
-        let second = b[sortDescriptor.column];
-        let cmp = collator.compare(first, second);
-        if (sortDescriptor.direction === "descending") {
-          cmp *= -1;
-        }
-        return cmp;
-      }),
-    };
-  }
-  const list = useAsyncList({ load, sort });
-  return (
-    <div className="admin"><AdminSide/>
-    <div className="agents">
-    <Table
-      aria-label="Example static collection table"
-      css={{ minWidth: "100%", height: "calc($space$14 * 10)" }}
-      sortDescriptor={list.sortDescriptor}
-      onSortChange={list.sort}
-    >
-      <Table.Header>
-        <Table.Column key="first_name" allowsSorting>
-         First Name
-        </Table.Column>
-        <Table.Column key="last_name" allowsSorting>
-          Last Name
-        </Table.Column>
-        <Table.Column key="email" >
-          Email
-        </Table.Column>
-      </Table.Header>
-      <Table.Body items={list.items} loadingState={list.loadingState}>
-        {(item) => (
-          <Table.Row key={item.name}>
-            {(columnKey) => <Table.Cell>{item[columnKey]}</Table.Cell>}
-          </Table.Row>
-        )}
-      </Table.Body>
-    </Table>
-    <Button variant="contained" endIcon={<DeleteIcon/>}>
-Delete
-</Button>
-<label>_</label>
-<Button variant="contained" endIcon={<UpgradeIcon/>}>
-Update
-</Button>
-    </div>
-    </div>
-  );
+import { useState, useEffect } from 'react'
+import axios from "axios";
+import { Link } from "react-router-dom";
+ 
+const Agents = () => {
+    const [agents, setAgent] = useState([]);
+ 
+    useEffect(() => {
+        getProducts();
+    }, []);
+ 
+    const getProducts = async () => {
+        const response = await axios.get('https://localhost:3001/admin/agents');
+        setAgent(response.data);
+    }
+ 
+    const deleteProduct = async (id) => {
+        await axios.delete(`https://localhost:3001/admin/agents/${id}`);
+        getProducts();
+    }
+ 
+    return (
+        <div>
+            <Link to="/add" className="button is-primary mt-2">Add New</Link>
+            <table className="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { agents.map((Agents, index) => (
+                        <tr key={ agents.id }>
+                            <td>{ index + 1 }</td>
+                            <td>{ agents.first_name}</td>
+                            <td>{ agents.email}</td>
+                            <td>
+                                <Link to={`/edit/${agents.id}`} className="button is-small is-info">Edit</Link>
+                                <button onClick={ () => deleteProduct(agents.id) } className="button is-small is-danger">Delete</button>
+                            </td>
+                        </tr>
+                    )) }
+                     
+                </tbody>
+            </table>
+        </div>
+    )
 }
+ 
+export default Agents
