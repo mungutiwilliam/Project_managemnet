@@ -12,7 +12,8 @@ const {
     deletePayment, 
     deleteAdmin,
     deleteTenant,
-    deleteUnit
+    deleteUnit,
+    
 } = require('../controllers/datbase_functions/delete/delete')
 const {
     updateAdmin,
@@ -29,7 +30,13 @@ const {viewAllTenants,
     viewAllAdmins,
     viewUnit,
     viewUnitOfTenant,
-    vviewApartmentAgent
+    viewAllTenantPayments,
+    vviewApartmentAgent,
+    findTenant,
+    findApartment,
+    findAgent,
+    findAdmin
+
 } = require('../controllers/datbase_functions/get/get')
 
 const {
@@ -41,7 +48,7 @@ const {
     registerUnit,
     loginAdmin,
     loginTenant,
-    loginAgent, 
+    loginAgent 
     
  } = require('../controllers/datbase_functions/post/post')
 
@@ -49,20 +56,20 @@ const {
  
 
 
-router.get('/tenants', valTokkenfetchUser, async function (req, res){
+router.get('/tenants', async function (req, res){
     console.log(req)
     await viewAllTenants(req, res);
 })
 
-router.get('/agents',valTokkenfetchUser, async function (req, res){
+router.get('/agents', async function (req, res){
     await viewAllAgents(req, res);
 
 })
-router.get('/admins',valTokkenfetchUser, async function (req, res){
+router.get('/admins', async function (req, res){
     await viewAllAdmins(req, res);
 })
 
-router.get('/apartments',valTokkenfetchUser,async function (req, res){
+router.get('/apartments',async function (req, res){
     await viewAllApartments(req.body, res);
 })
 
@@ -74,6 +81,11 @@ router.get('/units',async function (req, res){
 router.get('/payments',async function (req, res){
     await viewAllPayments(req.body, res);
 })
+
+router.get('/tenant_payments/:id',async function (req, res){
+    await viewAllTenantPayments(req.body, res);
+})
+
 
 router.get('/agents/agent/:id',async function (req, res){
     await viewAgent(req.params.id, res);
@@ -163,10 +175,6 @@ router.patch('/update_apartment/:id',async function(req, res){
 })
 
 
-// view apartments registered under agent
-router.get('/view_apartments_under_agent/:id', async function (req, res){
-    await viewApartmentAgent(req, res);
-})
 
 // view tenants registered under agent
 router.get('/view_tenants_under_agent/:id', async function (req, res){
@@ -179,6 +187,25 @@ router.get('/view_tenants_under_agent/:id', async function (req, res){
 router.get('/view_Agents_registered_agent/:id', async function (req, res){
     await viewAgentsRegisteredAdmin()
 })
+
+
+router.get('/find_agent/:id', async function (req, res){
+    await findAgent(req.params.id, res) 
+})
+
+router.get('/find_tenant/:id', async function (req, res){
+    await findTenant(req.params.id, res) 
+})
+
+
+router.get('/find_apartment/:id', async function (req, res){
+    await findApartment(req.params.id, res) 
+})
+
+router.get('/find_admin/:id', async function (req, res){
+    await findAdmin(req.params.id, res) 
+})
+
 
 
 // // view 

@@ -28,16 +28,7 @@ const admin_schema  = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref:'User'
     }],
-    issue:{
-        type: String,
-        unique: true
-    },
-    payment:{
-        type: String,
-        unique: true,
-
-    },
-    unit:{
+    phone_numer: {
         type: String,
         unique: true
     }

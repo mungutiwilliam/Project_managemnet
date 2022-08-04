@@ -118,9 +118,9 @@ const addPayment = async function(payment_dets, res){
 
 const vviewApartmentAgent = async function(req, res, next) {
     try {
-        let  agent_id = req.params._id
-        let apartment = req.body._id
-        const agent = Agent.findById(agent_id)
+        // let  agent_id = req.params._id
+        // let apartment = req.body._id
+        // const agent = Agent.findById(agent_id)
         let pipeline = [
             {
                 "$lookup": {
@@ -245,6 +245,7 @@ const loginTenant = async function(req, res){
 
 
 
+
 module.exports = {
     registerAgent,
     registerTenant,
@@ -255,5 +256,7 @@ module.exports = {
     vviewApartmentAgent,
     loginAdmin,
     loginTenant,
-    loginAgent
+    loginAgent,
+    
+
 }

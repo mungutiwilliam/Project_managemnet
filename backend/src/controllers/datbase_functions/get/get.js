@@ -7,7 +7,7 @@ const Admin = require('../../../models/admin_model');
 
 const viewAllTenants = async function(req, res) {
     try {
-        const tenants = await Tenant.find({})
+        const tenants = await Tenant.find({}, )
         let total = await Tenant.find().count()
         return res.status(200).send({
             tenants,
@@ -161,7 +161,105 @@ const viewUnitOfTenant = async function(req, res,id,next) {
     }
 }
 
-const viewAllTenantPayments= async function(req, res, next) {
+const findTenant = async function(id,res){
+    try {
+        const tenant = await Tenant.find({_id:id})
+        if(!tenant ){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }
+        return res.status(200).send({
+            tenant  
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+        
+    }
+}
+
+const findApartment = async function(id,res){
+    try {
+        const apartment = await Apartment.find({_id:id})
+        if(!apartment ){
+            return res.status(404).send({
+                message:'Apartment does not exist'
+            })  
+        }
+        return res.status(200).send({
+            apartment  
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+        
+    }
+}
+
+const findAgent = async function(id,res){
+    try {
+        const agent = await Agent.find({_id:id})
+        if(!agent ){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }
+        return res.status(200).send({
+            agent 
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+        
+    }
+}
+
+const findAdmin = async function(id,res){
+    try {
+        const admin = await Admin.find({_id:id},{first_name:1,last_name:1, email:1, phone_number:1})
+        if(!admin){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }
+        return res.status(200).send({
+            admin 
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+        
+    }
+}
+
+
+
+const viewAllTenantPayments = async function(id, res) {
+    try {
+        
+        const tenant_payments = await Tenant.find({id},{payment:1})
+        if(!tenant_payments){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }else if(tenant_payments==null){
+            return res.status(404).send({message:'No payments Found for tenant'})
+        }
+        return res.status(200).send({
+            tenant_payments 
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+        
+    }
+
 
 }
 
@@ -194,5 +292,10 @@ module.exports = {
     viewTenant,
     viewApartment,
     viewUnit,
-    viewUnitOfTenant
+    viewUnitOfTenant,
+    findTenant,
+    findApartment,
+    findAgent,
+    findAdmin,
+    viewAllTenantPayments
 }

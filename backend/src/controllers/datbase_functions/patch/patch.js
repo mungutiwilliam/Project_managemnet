@@ -112,6 +112,14 @@ const updateApartment = async function (req, res) {
     }
 }
 
+const updateApartmentAndAgent = async function(req,res) {
+    try{
+
+    }catch(error){
+        
+    }
+}
+
 module.exports = {
     updateAgent,
     updateTenant,
