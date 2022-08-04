@@ -4,7 +4,7 @@ import './tenant.css'
 import { Container, Card, Input, Spacer, Text,Button, Textarea} from "@nextui-org/react";
 import './internform.css'
 import { send } from 'emailjs-com';
-import Slide from 'react-reveal/Slide';
+
 
 
 
@@ -39,7 +39,6 @@ function Issues() {
         <Tside/>
     <div className="issues">
     <Container  style={{ color:"white" }}>
-    <Slide bottom>
     <Spacer y={2.5} />
 <Card color="white" align="center" style={{backgroundColor:"white", color:"black",width:"100%",height:"100%",marginTop:"-51.5px"}} >
 
@@ -63,7 +62,7 @@ function Issues() {
 
 
 </Card>
-</Slide>
+
 </Container>
 </div>
     </div>
