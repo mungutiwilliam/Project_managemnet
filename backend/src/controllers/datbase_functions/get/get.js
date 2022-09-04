@@ -4,6 +4,7 @@ const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
 const Agent = require('../../../models/agent_model');
 const Admin = require('../../../models/admin_model');
+const { isArguments } = require('lodash');
 
 const viewAllTenants = async function(req, res) {
     try {
@@ -218,6 +219,25 @@ const findAgent = async function(id,res){
     }
 }
 
+const findApartmentRegistered = async function(id, res){
+    try{
+        const agent = await Apartment.find({_id:id},{name:1, city:1, agents:1})
+        if(!agent){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }
+        return res.status(200).send({
+            agent
+        })
+
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).send(error)
+    }
+}
+
 const findAdmin = async function(id,res){
     try {
         const admin = await Admin.find({_id:id},{first_name:1,last_name:1, email:1, phone_number:1})
@@ -297,5 +317,6 @@ module.exports = {
     findApartment,
     findAgent,
     findAdmin,
-    viewAllTenantPayments
+    viewAllTenantPayments,
+    findApartmentRegistered
 }

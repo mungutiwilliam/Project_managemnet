@@ -35,7 +35,8 @@ const {viewAllTenants,
     findTenant,
     findApartment,
     findAgent,
-    findAdmin
+    findAdmin,
+    findApartmentRegistered
 
 } = require('../controllers/datbase_functions/get/get')
 
@@ -84,6 +85,10 @@ router.get('/payments',async function (req, res){
 
 router.get('/tenant_payments/:id',async function (req, res){
     await viewAllTenantPayments(req.body, res);
+})
+
+router.get('/apartment_agent/:id',async function (req, res){
+    await findApartmentRegistered(req.body, res);
 })
 
 
