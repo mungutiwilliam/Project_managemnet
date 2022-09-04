@@ -1,14 +1,13 @@
 const Unit = require('../../../models/unit_model');
-const Tenant = require('../../../models/tenant_model');
 const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
-const Agent = require('../../../models/agent_model');
-const Admin = require('../../../models/admin_model');
+const User = require('../../../models/user_model');
+const { useRadioGroup } = require('@material-ui/core');
 
 const viewAllTenants = async function(req, res) {
     try {
-        const tenants = await Tenant.find({}, )
-        let total = await Tenant.find().count()
+        const tenants = await User.find({}, )
+        let total = await Unit.find().count()
         return res.status(200).send({
             tenants,
             total
@@ -20,7 +19,9 @@ const viewAllTenants = async function(req, res) {
         return res.status(500).send(error)
  }
 }
-    
+   
+
+
 const viewAllUnits = async (_, res) => {
     try {
         const units = await Unit.find({})
@@ -33,6 +34,8 @@ const viewAllUnits = async (_, res) => {
         
     }
 }
+
+
 
 const viewAllPayments = async function(req, res) {
     try{
@@ -50,10 +53,10 @@ const viewAllPayments = async function(req, res) {
    
 }
 
+
+
 const viewAllApartments = async function(req, res){
     try{
-
-        
         const apartments = await Apartment.find({})
         let total = await Apartment.find().count()
         return res.status(200).send({
@@ -68,10 +71,12 @@ const viewAllApartments = async function(req, res){
 
 }
 
+
+
 const viewAllAgents = async function(req, res){
     try{
-        const agents = await Agent.find({})
-        const total = await Agent.find().count()
+        const agents = await User.find({})
+        const total = await User.find().count()
         return res.status(200).send({
             agents,
             total
@@ -84,10 +89,13 @@ const viewAllAgents = async function(req, res){
     }
 
 }
+
+
+
 const viewAllAdmins = async function(req, res) {
     try{
-        const admins = await Admin.find({})
-        let total = await Admin.find().count()
+        const admins = await User.find({})
+        let total = await useRadioGroup.find().count()
         console.log(admins)
         console.log(total)
         return res.status(200).send({
@@ -100,9 +108,11 @@ const viewAllAdmins = async function(req, res) {
     }
 }
 
-const viewAgent = async function(agent_id, res) {
+
+
+const findAgent = async function(agent_id, res) {
     try{
-        const agent = await Agent.findById(agent_id)
+        const agent = await User.findById(agent_id)
        
         return res.status(200).send(agent)
     }catch(error){
@@ -111,9 +121,11 @@ const viewAgent = async function(agent_id, res) {
     }
 }
 
-const viewTenant = async function(tenant_id, res) {
+
+
+const findTenant = async function(tenant_id, res) {
     try{
-        const tenant = await Tenant.findById(tenant_id)
+        const tenant = await User.findById(tenant_id)
 
         return res.status(200).send(tenant)
     }catch(error){
@@ -122,19 +134,9 @@ const viewTenant = async function(tenant_id, res) {
     }
 }
 
-const viewApartment = async function(apartment_id, res) {
-    try{
-        const agent = await Agent.findById(apartment_id)
-
-        return res.status(200).send(agent)
-    }catch(error){
-        console.log(error)
-        return res.status(500).send(error)
-    }
-}
 
 
-const viewUnit = async function(unit_id, res) {
+const findUnit = async function(unit_id, res) {
     try{
         const unit = await Unit.findById(unit_id)
 
@@ -147,42 +149,10 @@ const viewUnit = async function(unit_id, res) {
 
 
 
-const viewUnitOfTenant = async function(req, res,id,next) {
-    try{
-        let id = req.params.id
-        const unit = Tenant.find({unit_id:id}).populate('unit_id')
-        res.status(200).send(unit)
-
-    }
-    catch(error){
-        console.log(error)
-        return res.status(500).send(error)
-
-    }
-}
-
-const findTenant = async function(id,res){
-    try {
-        const tenant = await Tenant.find({_id:id})
-        if(!tenant ){
-            return res.status(404).send({
-                message:'Does not exist'
-            })  
-        }
-        return res.status(200).send({
-            tenant  
-        })
-        
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
-        
-    }
-}
 
 const findApartment = async function(id,res){
     try {
-        const apartment = await Apartment.find({_id:id})
+        const apartment = await Apartment.findById({_id:id})
         if(!apartment ){
             return res.status(404).send({
                 message:'Apartment does not exist'
@@ -199,28 +169,28 @@ const findApartment = async function(id,res){
     }
 }
 
-const findAgent = async function(id,res){
-    try {
-        const agent = await Agent.find({_id:id})
-        if(!agent ){
-            return res.status(404).send({
-                message:'Does not exist'
-            })  
-        }
-        return res.status(200).send({
-            agent 
-        })
-        
-    } catch (error) {
+
+
+
+const findUnitOfTenant = async function(req, res,id,next) {
+    try{
+        let id = req.params.id
+        const unit = User.find({unit_id:id}).populate('unit_id')
+        res.status(200).send(unit)
+
+    }
+    catch(error){
         console.log(error)
         return res.status(500).send(error)
-        
+
     }
 }
 
+
+
 const findAdmin = async function(id,res){
     try {
-        const admin = await Admin.find({_id:id},{first_name:1,last_name:1, email:1, phone_number:1})
+        const admin = await User.find({_id:id},{first_name:1,last_name:1, email:1, phone_number:1})
         if(!admin){
             return res.status(404).send({
                 message:'Does not exist'
@@ -239,16 +209,15 @@ const findAdmin = async function(id,res){
 
 
 
-const viewAllTenantPayments = async function(id, res) {
+const findAllTenantPayments = async function(id, res) {
     try {
-        
-        const tenant_payments = await Tenant.find({id},{payment:1})
+        const tenant_payments = await User.find({id},{payment:1})
         if(!tenant_payments){
             return res.status(404).send({
                 message:'Does not exist'
             })  
         }else if(tenant_payments==null){
-            return res.status(404).send({message:'No payments Found for tenant'})
+            return res.status(404).send({message:'No payments Found for Tenant'})
         }
         return res.status(200).send({
             tenant_payments 
@@ -263,39 +232,46 @@ const viewAllTenantPayments = async function(id, res) {
 
 }
 
-const viewTenantAgent= async function(req, res, next) {
+
+
+const findTenantAgent= async function(req, res, next) {
     
 }
 
-const  viewtenantApartment = async function(req, res, next) {
+
+
+const  findTenantApartment = async function(req, res, next) {
 
 }
 
 
-const viewAllApartmentdetails = async function(req, res, next) {
+
+const findAllApartmentdetails = async function(req, res, next) {
 
 }
+
+
 
 const viewTenantUnit = async function(req, res, next) {
 
+    
 }
 
-
 module.exports = {
+    viewAgentsRegisteredByAdmin,
     viewAllTenants,
     viewAllApartments,
     viewAllPayments,
     viewAllAgents,
     viewAllAdmins,
     viewAllUnits,
-    viewAgent,
-    viewTenant,
-    viewApartment,
-    viewUnit,
-    viewUnitOfTenant,
+    findAgent,
     findTenant,
+    findApartment,
+    findUnit,
+    findUnitOfTenant,
     findApartment,
     findAgent,
     findAdmin,
-    viewAllTenantPayments
+    findAllTenantPayments
 }

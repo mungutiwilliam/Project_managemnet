@@ -1,9 +1,7 @@
 const Unit = require('../models/unit_model');
-const Tenant = require('../models/tenant_model');
 const Payment = require('../models/payment_model');
 const Apartment = require('../models/apartment_model');
-const Agent = require('../models/agent_model');
-const Admin = require('../models/admin_model');
+const User = require('../models/user_model');
 const {SECRET} = require('../config/index');
 const jwt = require('jsonwebtoken')
 
@@ -18,7 +16,7 @@ const checkRole = role =>{
 const validateEmail = async email =>{
     let details = req.body
     if (role === "admin"){
-        details = await Admin.findOne({email})
+        details = await User.findOne({email})
         if (!details){
             return false;
 
@@ -92,11 +90,9 @@ const valTokkenfetchUser = async function (req, res, next){
 
 
 
-
 module.exports = {
     valTokkenfetchUser,
     validateEmail,
     checkRole,
     generateToken
 }
-

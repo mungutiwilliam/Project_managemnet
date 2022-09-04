@@ -1,21 +1,20 @@
 const Unit = require('../../../models/unit_model');
-const Agent = require('../../../models/agent_model');
-const Admin = require('../../../models/admin_model');
-const Tenant = require('../../../models/tenant_model');
+const User = require('../../../models/user_model');
 const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
+const Issue = require('../../../models/issues_mode')
 const bcrypt = require ('bcrypt');
 const saltRounds = 10
 
 const {validateTokken,
     validateEmail,
     checkRole,
-    generateToken} = require('../../functions')
+    generateToken} = require('../../helper_functions')
 
 const registerAgent = async function(agent_details, res){
     try{
         const hashedpassword = await bcrypt.hash(agent_details.password, saltRounds)
-        const agent = new Agent({
+        const agent = new User({
             ...agent_details,
             password:hashedpassword})
 
@@ -35,7 +34,7 @@ const registerAgent = async function(agent_details, res){
 const registerTenant = async function(tenant_details, res){
     try{
         const hashedpassword = await bcrypt.hash(tenant_details.password, saltRounds)
-        const tenant = new Tenant({
+        const tenant = new User({
              ...tenant_details,
              password: hashedpassword})
         await tenant.save()
@@ -54,7 +53,7 @@ const registerTenant = async function(tenant_details, res){
 const registerAdmin = async function(admin_dets, res){
     try {
         const hashedpassword = await bcrypt.hash(admin_dets.password, saltRounds)
-        const admin = new Admin({
+        const admin = new User({
             ...admin_dets,
              password: hashedpassword})
 
@@ -100,7 +99,7 @@ const registerApartment = async function(apartment_details, res){
     }
 }
 
-const addPayment = async function(payment_dets, res){
+const makePayment = async function(payment_dets, res){
     try {
         const payment = new Payment({payment_dets})
         await payment.save()
@@ -147,7 +146,7 @@ const vviewApartmentAgent = async function(req, res, next) {
 
 }
 
-const loginAdmin = async function(req, res){
+const loginUser = async function(req, res){
 
     try {
         let {email, password} = req.body 
@@ -155,15 +154,16 @@ const loginAdmin = async function(req, res){
         console.log(email)
         console.log(password)
 
-        const admin = await Admin.findOne({email})
-        console.log(admin)
+        const user = await User.findOne({email})
+        console.log(user)
         
-        if (admin){
-            const comp = bcrypt.compare(password, admin.password)
+        if (user){
+            const comp = bcrypt.compare(password, user.password)
             if (comp){
-                let token = generateToken(admin)
+                //// check token generation 
+                let token = generateToken(user)
                 return res.send({
-                    message: `Welcome ${admin.first_name}, you have been logged as admin `,
+                    message: `Welcome ${user.first_name}, you have been logged as ${user.role} `,
                     token
         })
             } else {
@@ -182,69 +182,6 @@ const loginAdmin = async function(req, res){
 }
 
 
-const loginAgent = async function(req, res){
-  
-
-    try {
-        let {email,password } = req.body
-
-        console.log(email)
-        console.log(password)
-
-        const agent =await Agent.findOne({email})
-        console.log(agent)
-        if (agent){
-            const comp =  bcrypt.compare(password, agent.password)
-            if (comp){
-                return res.send({Message:`Welcome ${agent.first_name}, you have been logged as an agent`})
-            } else {
-                return res.send({message:"Wrong Email or Password"});
-              }
-            } else {
-                return res.send({message:"No Such User Exists"});
-        }
-        
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            message :"Internal Server error Occured",
-            error});   
-    }
-}
-
-const loginTenant = async function(req, res){
-  
-
-    try {
-        let {email, password} = req.body
-
-        console.log(email)
-        console.log(password)
-   
-        const tenant = await Tenant.findOne({email})
-        console.log(tenant)
-
-        if (tenant){
-            const comp = bcrypt.compare(password, tenant.password)
-            if (comp){
-                return res.send({message:`Welcome ${tenant.first_name}, you have been logged as an agent`})
-            }else if(!cmp) {
-                return res.send({message:"Wrong Email or Password"});
-              }
-            } else {
-                return res.send({message: "No Such User Exists"});
-        }
-        
-    } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            message :"Internal Server error Occured",
-            error});   
-    }
-}
-
-
-
 
 module.exports = {
     registerAgent,
@@ -252,11 +189,9 @@ module.exports = {
     registerAdmin,
     registerUnit,
     registerApartment,
-    addPayment,
     vviewApartmentAgent,
-    loginAdmin,
-    loginTenant,
-    loginAgent,
-    
+    loginUser,
+    flagIssue,
+    makePayment 
 
 }

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const payment_schema = new mongoose.Schema({
     tenant:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Tenant',
+        ref: 'User',
         index: true,
         required: true
     },
@@ -21,9 +21,9 @@ const payment_schema = new mongoose.Schema({
     },
     payment:{ 
         type: Number,
-        required: true
-       
+        required: true  
     }
+    
 },{timestamps: true})
 
 const Payment = mongoose.model('Payment', payment_schema);

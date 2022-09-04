@@ -31,11 +31,12 @@ const apartment_schema =  new mongoose.Schema({
         required: true
     }],
     units_occupied:{
-        type : Number    
+        type : Number,
+        required : false    
     },
     agent:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Agent',
+        ref:'User',
         required: false,
         index: true
     }

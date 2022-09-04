@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 
-const admin_schema  = new mongoose.Schema({
+const user_schema  = new mongoose.Schema({
+    
     first_name:{
         type: String,
         required: true
@@ -18,21 +19,54 @@ const admin_schema  = new mongoose.Schema({
     role:{
         type : String,
         default:'admin',
-        enum: ['admin', 'super-admin', 'tenant','agent']
+        enum: ['admin', 'super-admin', 'tenant','agent'],
+        required: true,
     },
     password:{
         type: String,
         required: true
     },
-    agent:[{
-        type : mongoose.Schema.Types.ObjectId,
-        ref:'User'
-    }],
-    phone_numer: {
+    phone_number:{
         type: String,
-        unique: true
-    }
-   
+        unique: true,
+        required: true
+    },
+    apartment:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'Apartment',
+        required: false,
+        index: true
+    }],
+    registered_by:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        index : true 
+    },
+    tenant_registered:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        index : true 
+    },
+    balance:{
+        type : Number,
+        required: false
+    },
+    unit:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Unit',
+        required: false,
+        index: true
+    }, 
+    payment:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Payment',
+        required: false,
+        index:true
+    }]
+
+
 })
 
 // admin_schema.pre('save', async function(password,next){
@@ -62,6 +96,6 @@ const admin_schema  = new mongoose.Schema({
 //     })
 // }
 
-const Admin = mongoose.model('Admin', admin_schema);
+const User = mongoose.model('User', user_schema);
 
-module.exports = Admin;
+module.exports = User;

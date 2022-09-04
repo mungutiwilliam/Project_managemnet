@@ -1,9 +1,7 @@
 const Unit = require('../../../models/unit_model');
-const Tenant = require('../../../models/tenant_model');
 const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
-const Agent = require('../../../models/agent_model');
-const Admin = require('../../../models/admin_model');
+const User = require('../../../models/user_model');
 
 
 
@@ -32,7 +30,7 @@ const updateAgent = async function (req, res) {
     try {
         let changes = req.body
         let id = req.params.id
-        const agent = await Agent.findByIdAndUpdate(id,changes,res)
+        const agent = await User.findByIdAndUpdate(id,changes,res)
         if(!agent){
             return res.status(404).send({
                 message:'The agent does not exist'
@@ -52,7 +50,7 @@ const updateTenant = async function (req, res) {
     try {
         let changes = req.body
         let id = req.params.id
-        const tenant = await Tenant.findByIdAndUpdate(id,changes,res)
+        const tenant = await User.findByIdAndUpdate(id,changes,res)
         if(!tenant){
             return res.status(404).send({
                 message:'The tenant does not exist'
@@ -75,7 +73,7 @@ const updateAdmin = async function (req, res) {
     try {
         let changes = req.body
         let id = req.params.id
-        const admin = await Admin.findByIdAndUpdate(id,changes,res)
+        const admin = await User.findByIdAndUpdate(id,changes,res)
         if(!admin){
             return res.status(404).send({
                 message:'The admin does not exist'
@@ -114,8 +112,10 @@ const updateApartment = async function (req, res) {
 
 const updateApartmentAndAgent = async function(req,res) {
     try{
+        
 
     }catch(error){
+      
         
     }
 }

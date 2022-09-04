@@ -23,10 +23,9 @@ const unit_schema = new mongoose.Schema({
     },
     tenant:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Users',
+        ref:'User',
         index: true,
-        required: false
-         
+        required: false  
     }
 })
 
