@@ -7,7 +7,7 @@ const { useRadioGroup } = require('@material-ui/core');
 const viewAllTenants = async function(req, res) {
     try {
         const tenants = await User.find({}, )
-        let total = await Unit.find().count()
+        let total = await User.find().count()
         return res.status(200).send({
             tenants,
             total
@@ -254,7 +254,7 @@ const findAllApartmentdetails = async function(req, res, next) {
 
 const viewTenantUnit = async function(req, res, next) {
 
-    
+
 }
 
 module.exports = {

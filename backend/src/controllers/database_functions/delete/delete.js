@@ -6,14 +6,14 @@ const User = require('../../../models/user_model');
 const deleteUser = async function(id,res){
     try {
         const user = await User.findByIdAndDelete(id)
-        if(!agent ){
+        if(!user ){
             return res.status(404).send({
-                message:'The Agent does not exist'
+                message:'The User does not exist'
             }) 
         }
         return res.status(200).send({
-            agent,
-            message: 'Agent has been deleted'
+            user,
+            message: 'User has been deleted'
         })
         
     } catch (error) {
