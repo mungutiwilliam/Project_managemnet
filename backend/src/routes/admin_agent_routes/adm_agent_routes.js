@@ -30,6 +30,7 @@ router.get('/tenants', async function (req, res){
 })
 
 router.get('/units',async function (req, res){
+    console.log(req)
     await viewAllUnits(req.body, res);
 })
 

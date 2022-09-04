@@ -16,7 +16,6 @@ const {
     updateApartment
 } = require('../../controllers/database_functions/patch/patch')
 
-
 const {
     registerAgent,
     registerApartment,
@@ -49,18 +48,46 @@ router.get('/admins', async function (req, res){
 })
 
 
-
-
 router.get('/apartments',async function (req, res){
     await viewAllApartments(req.body, res);
 })
-
 
 
 router.get('/payments',async function (req, res){
     await viewAllPayments(req.body, res);
 })
 
+
+router.get('/tenant_payments/:id',async function (req, res){
+    await viewAllTenantPayments(req.body, res);
+})
+
+router.get('/apartment_agent/:id',async function (req, res){
+    await findApartmentRegistered(req.body, res);
+})
+
+
+router.get('/agents/agent/:id',async function (req, res){
+    await viewAgent(req.params.id, res);
+})
+
+
+router.get('/units/unit/:id',async function (req, res){
+    await viewUnit(req.params.id, res);
+
+})
+
+router.post('/login_admin', async function (req, res){
+    await loginAdmin(req, res);
+})
+
+router.post('/login_tenant', async function (req, res){
+    await loginTenant(req, res);
+})
+
+router.post('/login_agent', async function (req, res){
+    await loginAgent(req, res);
+})
 
 
 router.post('/register_agent', async function (req, res){

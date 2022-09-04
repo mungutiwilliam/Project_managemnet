@@ -3,7 +3,7 @@ const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
 const User = require('../../../models/user_model');
 const { useRadioGroup } = require('@material-ui/core');
-
+const { isArguments } = require('lodash');
 const viewAllTenants = async function(req, res) {
     try {
         const tenants = await User.find({}, )
@@ -186,7 +186,24 @@ const findUnitOfTenant = async function(req, res,id,next) {
     }
 }
 
+const findApartmentRegistered = async function(id, res){
+    try{
+        const agent = await Apartment.find({_id:id},{name:1, city:1, agents:1})
+        if(!agent){
+            return res.status(404).send({
+                message:'Does not exist'
+            })  
+        }
+        return res.status(200).send({
+            agent
+        })
 
+    }
+    catch(error){
+        console.log(error)
+        return res.status(500).send(error)
+    }
+}
 
 const findAdmin = async function(id,res){
     try {
@@ -270,8 +287,6 @@ module.exports = {
     findApartment,
     findUnit,
     findUnitOfTenant,
-    findApartment,
-    findAgent,
     findAdmin,
     findAllTenantPayments
 }
