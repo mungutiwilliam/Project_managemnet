@@ -18,7 +18,6 @@ const user_schema  = new mongoose.Schema({
     },
     role:{
         type : String,
-        default:'admin',
         enum: ['admin', 'super-admin', 'tenant','agent'],
         required: true,
     },
@@ -29,7 +28,9 @@ const user_schema  = new mongoose.Schema({
     phone_number:{
         type: String,
         unique: true,
-        required: true
+        required: true,
+        maxLength: 10,
+        minLength: 10
     },
     apartment:[{
         type: mongoose.Schema.Types.ObjectId,
@@ -69,32 +70,6 @@ const user_schema  = new mongoose.Schema({
 
 })
 
-// admin_schema.pre('save', async function(password,next){
-//     try {
-//         const admin = this
-//         if (!admin.isModified(password)) next();
-//         // generate salt 
-
-//         const salt = await bcrypt.genSalt(10)
-//         // hash password
-//         const hashedpassword = await bcyrpt.hash(this.password, salt)
-//         // replace plain text password with hashed password
-//         this.password = hashedpassword
-//         next();
-        
-//     } catch (error) {
-//         return next(error);
-//     }
-// })
-
-// admin_schema.methods.comparepassword = function(passw, cb){
-//     bcyrpt.compare(passw, this.password, function (err, isMatch){
-//         if (err){
-//             return cb(err);
-//         }
-//         cb(null, isMatch);
-//     })
-// }
 
 const User = mongoose.model('User', user_schema);
 

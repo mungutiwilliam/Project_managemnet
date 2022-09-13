@@ -46,20 +46,20 @@ const updateAgent = async function (req, res) {
         return res.status(500).send(error)
     }
 }
-const updateTenant = async function (req, res) {
+const updateProfile = async function (req, res) {
     try {
         let changes = req.body
         let id = req.params.id
-        const tenant = await User.findByIdAndUpdate(id,changes,res)
-        if(!tenant){
+        const user = await User.findByIdAndUpdate(id,changes,res)
+        if(!user){
             return res.status(404).send({
                 message:'The tenant does not exist'
             })  
 
         }  return res.status(200).send({
             changes,
-            tenant,
-            message: 'Tenant has been updated'
+            user,
+            message: 'Details have been updated successfully'
         })
     
     } catch (error) {
@@ -122,7 +122,8 @@ const updateApartmentAndAgent = async function(req,res) {
 
 module.exports = {
     updateAgent,
-    updateTenant,
+   // updateTenant,
+    updateProfile,
     updatePayment,
     updateAdmin,
     updateApartment,

@@ -2,8 +2,11 @@ const Unit = require('../../../models/unit_model');
 const Payment = require('../../../models/payment_model');
 const Apartment = require('../../../models/apartment_model');
 const User = require('../../../models/user_model');
-const { useRadioGroup } = require('@material-ui/core');
-const { isArguments } = require('lodash');
+
+
+
+
+
 const viewAllTenants = async function(req, res) {
     try {
         const tenants = await User.find({}, )
@@ -25,10 +28,8 @@ const viewAllTenants = async function(req, res) {
 const viewAllUnits = async (_, res) => {
     try {
         const units = await Unit.find({})
-        let total = await Unit.find().count()
         console.log(units)
-        return res.status(200).send(units,
-            total)
+        return res.status(200).send(units)
     } catch (error) {
         return res.status(500).send(error)
         
@@ -95,17 +96,17 @@ const viewAllAgents = async function(req, res){
 const viewAllAdmins = async function(req, res) {
     try{
         const admins = await User.find({})
-        let total = await useRadioGroup.find().count()
         console.log(admins)
-        console.log(total)
-        return res.status(200).send({
-            admins,
-            total})
+        return res.status(200).send({admins})
 
     }catch(error){
         console.log(error)
         return res.status(500).send(error)
     }
+}
+
+const viewAllTenantPayments = async function(id, res){
+
 }
 
 
@@ -226,7 +227,7 @@ const findAdmin = async function(id,res){
 
 
 
-const findAllTenantPayments = async function(id, res) {
+const paymentHistory = async function(id, res) {
     try {
         const tenant_payments = await User.find({id},{payment:1})
         if(!tenant_payments){
@@ -275,7 +276,8 @@ const viewTenantUnit = async function(req, res, next) {
 }
 
 module.exports = {
-    viewAgentsRegisteredByAdmin,
+    //viewAgentsRegisteredByAdmin,
+    viewAllTenantPayments,
     viewAllTenants,
     viewAllApartments,
     viewAllPayments,
@@ -288,5 +290,5 @@ module.exports = {
     findUnit,
     findUnitOfTenant,
     findAdmin,
-    findAllTenantPayments
+    paymentHistory
 }

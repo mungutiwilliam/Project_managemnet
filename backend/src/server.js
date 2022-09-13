@@ -2,18 +2,18 @@ const express = require("express");
 const app = express();
 require('./db/mongoose')
 const {PORT} = require('./config/index');
-const adm_agent_routes = require("./routes/admin_agent_routes/adm_agent_routes");
+const agent_routes = require("./routes/admin_agent_routes/common_routes");
 const superadmin = require("./routes/admin_agent_routes/admin_routes");
-const all_users = require("./routes/all_users_routes/routes");
+const tenant = require("./routes/tenant_routes/tenant_routes");
 const bodyParser = require("body-parser");
 
 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/admin",adm_agent_routes);
 app.use("/superadmin",superadmin);
-app.use("/user",all_users);
+app.use("/agent",agent_routes);
+app.use("/tenant",tenant);
 
 
 

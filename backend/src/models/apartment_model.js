@@ -6,7 +6,8 @@ const apartment_schema =  new mongoose.Schema({
          required: true},
 
     city:{
-        type : String, 
+        type : String,
+        enum: ['Nairobi', 'Mombasa', 'Kikuyu'], 
         required: true
     },
     estate:{

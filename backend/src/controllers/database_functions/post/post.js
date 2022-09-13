@@ -6,10 +6,11 @@ const Issue = require('../../../models/issues_mode')
 const bcrypt = require ('bcrypt');
 const saltRounds = 10
 
-const {validateTokken,
+const {
+    validateTokken,
     validateEmail,
     checkRole,
-    generateToken} = require('../../helper_functions')
+    generateToken} = require('../../../middleware/helpers')
 
 const registerAgent = async function(agent_details, res){
     try{
@@ -79,7 +80,7 @@ const registerUnit = async function (unit_details, res){
             message: 'New Unit Registered'
         })  
     } catch (error) {
-        return res.status(200).send(error)
+        return res.status(500).send(error)
     }
 }
 
@@ -101,7 +102,7 @@ const registerApartment = async function(apartment_details, res){
 
 const makePayment = async function(payment_dets, res){
     try {
-        const payment = new Payment({payment_dets})
+        const payment = new Payment(payment_dets)
         await payment.save()
         console.log(payment)
         return res.status(200).send({
@@ -141,7 +142,8 @@ const vviewApartmentAgent = async function(req, res, next) {
     }
             
      catch (error) {
-        console.log(error)    
+        console.log(error)
+        return res.status(500).send(error)    
     }
 
 }
@@ -178,6 +180,23 @@ const loginUser = async function(req, res){
         res.status(500).send({
             message :"Internal Server error Occured",
             error: error});   
+    }
+}
+
+const  flagIssue = async function(req, res){
+    try{
+        let issue_details = req.body
+        console.log(issue_details)
+        const issue = new Issue(issue_details);
+        await issue.save();
+        console.log(issue)
+        return res.status(200).send({
+            issue,
+            message: 'Issue has been raised successfully.'
+        })
+
+    }catch (error) {
+        res.status(500).send(error)
     }
 }
 

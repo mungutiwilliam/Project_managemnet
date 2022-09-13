@@ -1,31 +1,23 @@
 const mongoose = require('mongoose');
 
-
 const payment_schema = new mongoose.Schema({
     tenant:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        index: true,
-        required: true
+        required: true,
+        index: true
     },
     payment_for:{
         type: String,
-        enum: ['rent','repairs', 'other'],
-        default: 'rent',
-        required: true
+        enum:['rent & garbage', 'repairs','other'],
+        required: true,
     },
     desc:{
         type: String,
-        required: true
-       
-    },
-    payment:{ 
-        type: Number,
-        required: true  
+        required: false
     }
-    
-},{timestamps: true})
+})
 
-const Payment = mongoose.model('Payment', payment_schema);
+const Payment = mongoose.model('Payment', payment_schema)
 
 module.exports = Payment;

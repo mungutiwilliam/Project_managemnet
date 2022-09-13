@@ -13,11 +13,18 @@ const unit_schema = new mongoose.Schema({
         enum:['1B', '2B', '3B', '4B'],
         required: true,
     },
+    unit_number:{
+
+        type: String,
+        required: true,
+    },
     numb_of_bathrooms:{
+
         type: Number,
         required: true,
     },
     price:{
+
         type : Number,
         required: true,
     },

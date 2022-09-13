@@ -1,5 +1,5 @@
 const Unit = require('../models/unit_model');
-const Payment = require('../models/payment_model');
+//const Payment = require('../models/payment_model');
 const Apartment = require('../models/apartment_model');
 const User = require('../models/user_model');
 const {SECRET} = require('../config/index');

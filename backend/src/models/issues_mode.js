@@ -10,7 +10,7 @@ const issue_schema = new mongoose.Schema({
     },
     issue_raised:{
         type: String,
-        enum: ['Complains','Suggestions', 'repairs', 'Others'],
+        enum: ['complain','suggestion', 'repair', 'other'],
         required: true
     },
     desc:{
